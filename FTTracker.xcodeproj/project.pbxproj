@@ -7,12 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CD816F901F90596E007A2A6D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CD816F8D1F90592B007A2A6D /* GoogleService-Info.plist */; };
+		CD816F921F905AF9007A2A6D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDAD29FD1F90066100DD0573 /* Main.storyboard */; };
+		CD816F941F906937007A2A6D /* CurvedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD816F931F906937007A2A6D /* CurvedButton.swift */; };
+		CD816F961F916A05007A2A6D /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD816F951F916A05007A2A6D /* RegisterViewController.swift */; };
+		CD816F981F916F28007A2A6D /* FTTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD816F971F916F28007A2A6D /* FTTextField.swift */; };
+		CD816F9A1F916F49007A2A6D /* FTTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD816F991F916F49007A2A6D /* FTTextView.swift */; };
 		CD9881841F90061000661E4E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9881831F90061000661E4E /* AppDelegate.swift */; };
-		CD9881861F90061000661E4E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9881851F90061000661E4E /* ViewController.swift */; };
-		CD9881891F90061000661E4E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD9881871F90061000661E4E /* Main.storyboard */; };
 		CD98818B1F90061000661E4E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD98818A1F90061000661E4E /* Assets.xcassets */; };
 		CD98818E1F90061000661E4E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD98818C1F90061000661E4E /* LaunchScreen.storyboard */; };
 		CD9881991F90061100661E4E /* FTTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9881981F90061100661E4E /* FTTrackerTests.swift */; };
+		CDAD2A001F90088300DD0573 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAD29FF1F90088300DD0573 /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,16 +31,25 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		35FB39B76B19C550B475F086 /* Pods-FTTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FTTracker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FTTracker/Pods-FTTracker.debug.xcconfig"; sourceTree = "<group>"; };
+		B545E05C44DAC68580DF7F63 /* Pods-FTTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FTTracker.release.xcconfig"; path = "Pods/Target Support Files/Pods-FTTracker/Pods-FTTracker.release.xcconfig"; sourceTree = "<group>"; };
+		C54B7310AA5D19941043EC5E /* Pods-FTTrackerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FTTrackerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FTTrackerTests/Pods-FTTrackerTests.debug.xcconfig"; sourceTree = "<group>"; };
+		CD816F8D1F90592B007A2A6D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		CD816F931F906937007A2A6D /* CurvedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurvedButton.swift; sourceTree = "<group>"; };
+		CD816F951F916A05007A2A6D /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		CD816F971F916F28007A2A6D /* FTTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTTextField.swift; sourceTree = "<group>"; };
+		CD816F991F916F49007A2A6D /* FTTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTTextView.swift; sourceTree = "<group>"; };
 		CD9881801F90061000661E4E /* FTTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FTTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD9881831F90061000661E4E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CD9881851F90061000661E4E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		CD9881881F90061000661E4E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CD98818A1F90061000661E4E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CD98818D1F90061000661E4E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CD98818F1F90061000661E4E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CD9881941F90061100661E4E /* FTTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FTTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD9881981F90061100661E4E /* FTTrackerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTTrackerTests.swift; sourceTree = "<group>"; };
 		CD98819A1F90061100661E4E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CDAD29FD1F90066100DD0573 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		CDAD29FF1F90088300DD0573 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		D0DCEB47B9F2A9204E968147 /* Pods-FTTrackerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FTTrackerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FTTrackerTests/Pods-FTTrackerTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,12 +70,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7E7A130608C7D2D56F5A1582 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				35FB39B76B19C550B475F086 /* Pods-FTTracker.debug.xcconfig */,
+				B545E05C44DAC68580DF7F63 /* Pods-FTTracker.release.xcconfig */,
+				C54B7310AA5D19941043EC5E /* Pods-FTTrackerTests.debug.xcconfig */,
+				D0DCEB47B9F2A9204E968147 /* Pods-FTTrackerTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		93A15B116EB8868ADA641DB0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		CD9881771F90061000661E4E = {
 			isa = PBXGroup;
 			children = (
 				CD9881821F90061000661E4E /* FTTracker */,
 				CD9881971F90061100661E4E /* FTTrackerTests */,
 				CD9881811F90061000661E4E /* Products */,
+				7E7A130608C7D2D56F5A1582 /* Pods */,
+				93A15B116EB8868ADA641DB0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -77,9 +111,14 @@
 		CD9881821F90061000661E4E /* FTTracker */ = {
 			isa = PBXGroup;
 			children = (
+				CD816F8D1F90592B007A2A6D /* GoogleService-Info.plist */,
+				CDAD29FF1F90088300DD0573 /* LoginViewController.swift */,
 				CD9881831F90061000661E4E /* AppDelegate.swift */,
-				CD9881851F90061000661E4E /* ViewController.swift */,
-				CD9881871F90061000661E4E /* Main.storyboard */,
+				CDAD29FD1F90066100DD0573 /* Main.storyboard */,
+				CD816F951F916A05007A2A6D /* RegisterViewController.swift */,
+				CD816F971F916F28007A2A6D /* FTTextField.swift */,
+				CD816F991F916F49007A2A6D /* FTTextView.swift */,
+				CD816F931F906937007A2A6D /* CurvedButton.swift */,
 				CD98818A1F90061000661E4E /* Assets.xcassets */,
 				CD98818C1F90061000661E4E /* LaunchScreen.storyboard */,
 				CD98818F1F90061000661E4E /* Info.plist */,
@@ -103,9 +142,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CD98819D1F90061100661E4E /* Build configuration list for PBXNativeTarget "FTTracker" */;
 			buildPhases = (
+				EFA73A2DF958F53EA59B2ED9 /* [CP] Check Pods Manifest.lock */,
 				CD98817C1F90061000661E4E /* Sources */,
 				CD98817D1F90061000661E4E /* Frameworks */,
 				CD98817E1F90061000661E4E /* Resources */,
+				12A90CC5523392A18572DA5F /* [CP] Embed Pods Frameworks */,
+				BBAC449A93F0DFB6A4921792 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -120,9 +162,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CD9881A01F90061100661E4E /* Build configuration list for PBXNativeTarget "FTTrackerTests" */;
 			buildPhases = (
+				9C4EE7B382AA6C6A4254320D /* [CP] Check Pods Manifest.lock */,
 				CD9881901F90061100661E4E /* Sources */,
 				CD9881911F90061100661E4E /* Frameworks */,
 				CD9881921F90061100661E4E /* Resources */,
+				E1D799628F0E4EDD23684DB3 /* [CP] Embed Pods Frameworks */,
+				D2AE9AD78F59FCEDFD9BFEEB /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -180,8 +225,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD98818E1F90061000661E4E /* LaunchScreen.storyboard in Resources */,
+				CD816F901F90596E007A2A6D /* GoogleService-Info.plist in Resources */,
 				CD98818B1F90061000661E4E /* Assets.xcassets in Resources */,
-				CD9881891F90061000661E4E /* Main.storyboard in Resources */,
+				CD816F921F905AF9007A2A6D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,13 +240,116 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		12A90CC5523392A18572DA5F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FTTracker/Pods-FTTracker-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9C4EE7B382AA6C6A4254320D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FTTrackerTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BBAC449A93F0DFB6A4921792 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FTTracker/Pods-FTTracker-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D2AE9AD78F59FCEDFD9BFEEB /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FTTrackerTests/Pods-FTTrackerTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E1D799628F0E4EDD23684DB3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FTTrackerTests/Pods-FTTrackerTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EFA73A2DF958F53EA59B2ED9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FTTracker-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		CD98817C1F90061000661E4E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD9881861F90061000661E4E /* ViewController.swift in Sources */,
+				CD816F981F916F28007A2A6D /* FTTextField.swift in Sources */,
+				CDAD2A001F90088300DD0573 /* LoginViewController.swift in Sources */,
+				CD816F941F906937007A2A6D /* CurvedButton.swift in Sources */,
+				CD816F9A1F916F49007A2A6D /* FTTextView.swift in Sources */,
 				CD9881841F90061000661E4E /* AppDelegate.swift in Sources */,
+				CD816F961F916A05007A2A6D /* RegisterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -223,14 +372,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		CD9881871F90061000661E4E /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CD9881881F90061000661E4E /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		CD98818C1F90061000661E4E /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -351,6 +492,7 @@
 		};
 		CD98819E1F90061100661E4E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 35FB39B76B19C550B475F086 /* Pods-FTTracker.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -365,6 +507,7 @@
 		};
 		CD98819F1F90061100661E4E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B545E05C44DAC68580DF7F63 /* Pods-FTTracker.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -379,6 +522,7 @@
 		};
 		CD9881A11F90061100661E4E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C54B7310AA5D19941043EC5E /* Pods-FTTrackerTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -395,6 +539,7 @@
 		};
 		CD9881A21F90061100661E4E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D0DCEB47B9F2A9204E968147 /* Pods-FTTrackerTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
