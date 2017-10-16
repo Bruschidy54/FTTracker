@@ -10,7 +10,12 @@ import UIKit
 import Firebase
 
 class LoginViewController: UIViewController {
-
+    
+    
+    @IBAction func onRegisterButtonTapped(_ sender: Any) {
+        self.performSegue(withIdentifier: "RegisterSegue", sender: self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

@@ -9,13 +9,27 @@
 import UIKit
 
 class FTTextView: UITextView {
-
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.layer.borderWidth = 0
+        self.layer.borderColor = UIColor.darkGray.cgColor
+        self.layer.cornerRadius = 5
     }
-    */
+    
+    override func becomeFirstResponder() -> Bool {
+        let myColor: UIColor = UIColor.blue
+        self.layer.borderColor = myColor.cgColor
+        self.layer.borderWidth = 1.0
+        
+        return super.becomeFirstResponder()
+    }
+    
+    override func resignFirstResponder() -> Bool {
+        let myColor: UIColor = UIColor.darkGray
+        self.layer.borderColor = myColor.cgColor
+        self.layer.borderWidth = 0
+        
+        return super.resignFirstResponder()
+    }
 
 }
