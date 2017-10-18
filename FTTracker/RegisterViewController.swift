@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import Photos
 
 class RegisterViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -32,6 +33,8 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
     var userType: UserType = .Customer
     let imagePicker = UIImagePickerController()
     var profilePicture: UIImage?
+    
+    
     
     @IBAction func onCustomerFTSegmentedControlChanged(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
@@ -197,27 +200,40 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
     }
     
     @objc func pickPhoto(gestureRecognizer: UITapGestureRecognizer) {
-        let imagePicker = UIImagePickerController()
-        imagePicker.allowsEditing = true
-        imagePicker.sourceType = .photoLibrary
-        
-        present(imagePicker, animated: true, completion: nil)
+        PHPhotoLibrary.requestAuthorization({(status: PHAuthorizationStatus) in
+            switch status {
+            case .authorized:
+            print("Authorized")
+            let imagePicker = UIImagePickerController()
+            imagePicker.allowsEditing = true
+            imagePicker.sourceType = .photoLibrary
+            
+            self.present(imagePicker, animated: true, completion: nil)
+            break
+            case .denied:
+            print("Denied")
+            break
+            default:
+            print("Default")
+            break
+        }
+    })
     }
     
     // MARK: - UIImagePickerControllerDelegate Methods
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+  @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let pickedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
             print("Update profile picture")
+            uploadImageView.contentMode = .scaleAspectFit
             uploadImageView.image = pickedImage
             profilePicture = pickedImage
         }
-        
-        dismiss(animated: true, completion: nil)
+        picker.dismiss(animated: true, completion: nil)
     }
     
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        dismiss(animated: true, completion: nil)
+  @objc func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
     }
     /*
     // MARK: - Navigation
