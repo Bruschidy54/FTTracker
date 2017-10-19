@@ -30,8 +30,7 @@
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TitleImage" translatesAutoresizingMaskIntoConstraints="NO" id="k8D-cR-fje">
                                             <rect key="frame" x="62.5" y="40" width="250" height="200"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="250" id="WaM-9U-CV2"/>
-                                                <constraint firstAttribute="height" constant="200" id="Xep-no-6m9"/>
+                                                <constraint firstAttribute="width" secondItem="k8D-cR-fje" secondAttribute="height" multiplier="5:4" id="rJw-jz-XT7"/>
                                             </constraints>
                                         </imageView>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Yl9-wf-CHc">
@@ -84,8 +83,8 @@
                                                 <constraint firstItem="1Tk-6A-qMj" firstAttribute="leading" secondItem="j8K-z4-Zkt" secondAttribute="leading" id="xFT-It-TVf"/>
                                             </constraints>
                                         </stackView>
-                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="rOa-mY-uko">
-                                            <rect key="frame" x="19.5" y="513" width="336" height="50"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="rOa-mY-uko">
+                                            <rect key="frame" x="27.5" y="513" width="320" height="50"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iC6-n1-48g" customClass="CurvedButton" customModule="FTTracker">
                                                     <rect key="frame" x="0.0" y="0.0" width="100" height="50"/>
@@ -97,9 +96,12 @@
                                                     <state key="normal" title="Log In">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="onLogInButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ajm-w4-dmQ"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MDt-Sm-Ck7" customClass="CurvedButton" customModule="FTTracker">
-                                                    <rect key="frame" x="118" y="0.0" width="100" height="50"/>
+                                                    <rect key="frame" x="110" y="0.0" width="100" height="50"/>
                                                     <color key="backgroundColor" red="0.80000000000000004" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <state key="normal" title="Register">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -109,11 +111,14 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e6R-gY-3EG" customClass="CurvedButton" customModule="FTTracker">
-                                                    <rect key="frame" x="236" y="0.0" width="100" height="50"/>
+                                                    <rect key="frame" x="220" y="0.0" width="100" height="50"/>
                                                     <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                                     <state key="normal" title="Guest">
                                                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="onGuestButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eZF-ms-tVR"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </stackView>
@@ -149,6 +154,8 @@
                     </view>
                     <navigationItem key="navigationItem" title="Food Truck Tracker" id="Qbw-IM-XUI"/>
                     <connections>
+                        <outlet property="emailTextField" destination="j8K-z4-Zkt" id="Wdq-ZE-7XN"/>
+                        <outlet property="passwordTextField" destination="1Tk-6A-qMj" id="ALW-51-Kqr"/>
                         <segue destination="Gbn-Ea-0cB" kind="show" identifier="LogInSegue" id="TuN-01-HDj"/>
                         <segue destination="Gbn-Ea-0cB" kind="show" identifier="GuestSegue" id="HL5-QW-OmS"/>
                         <segue destination="oNv-5x-1hL" kind="show" identifier="RegisterSegue" id="OAJ-4q-gVT"/>
@@ -568,6 +575,6 @@
         <image name="UploadIcon" width="200" height="200"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="HL5-QW-OmS"/>
+        <segue reference="TuN-01-HDj"/>
     </inferredMetricsTieBreakers>
 </document>

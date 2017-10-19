@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import Photos
 
-class RegisterViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class RegisterViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UITextViewDelegate {
     
     @IBOutlet var customerFTSegmentedControl: UISegmentedControl!
     @IBOutlet var topStackViewWidthConstraint: NSLayoutConstraint!
@@ -66,6 +66,8 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.hideKeyboardWhenTappedAround()
         
         imagePicker.delegate = self
         
@@ -234,6 +236,24 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
     
   @objc func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
+    }
+    
+    // MARK: - UITextFieldDelegate Methods
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.dismissKeyboard()
+        return false
+    }
+    
+    // MARK: - UITextViewDelegate Methods
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if text == "\n" {
+            self.dismissKeyboard()
+            return false
+        } else {
+            return true
+        }
     }
     /*
     // MARK: - Navigation
