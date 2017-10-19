@@ -165,10 +165,10 @@
             </objects>
             <point key="canvasLocation" x="50.399999999999999" y="55.322338830584712"/>
         </scene>
-        <!--Item-->
+        <!--Map-->
         <scene sceneID="pGC-bW-jK1">
             <objects>
-                <viewController id="IxX-hM-LPA" sceneMemberID="viewController">
+                <viewController id="IxX-hM-LPA" customClass="TruckMapAndTableViewController" customModule="FTTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0EV-KL-UMo">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -178,10 +178,27 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="300" id="RNz-9t-Opj"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="IxX-hM-LPA" id="0oR-gz-BnQ"/>
+                                </connections>
                             </mapView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Etu-7a-DHd">
                                 <rect key="frame" x="0.0" y="364" width="375" height="254"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TruckCell" id="6fS-07-xha">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6fS-07-xha" id="0cE-2G-udg">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="IxX-hM-LPA" id="Tkx-Jw-fTM"/>
+                                    <outlet property="delegate" destination="IxX-hM-LPA" id="j0j-YE-TfH"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -198,7 +215,11 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ZXe-qj-s7l"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="ZRK-Hb-EmV"/>
+                    <tabBarItem key="tabBarItem" title="Map" id="ZRK-Hb-EmV"/>
+                    <connections>
+                        <outlet property="mapView" destination="bBJ-YG-Nxw" id="oc4-V7-I7A"/>
+                        <outlet property="tableView" destination="Etu-7a-DHd" id="bXv-7V-p2r"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E1i-dt-AYX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -248,7 +269,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PUg-Lv-CoB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="806" y="1473"/>
+            <point key="canvasLocation" x="1108" y="1795"/>
         </scene>
         <!--Item-->
         <scene sceneID="SBO-eb-7SF">
@@ -264,7 +285,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="78W-Xc-P4P" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1780" y="1501"/>
+            <point key="canvasLocation" x="2095" y="1794"/>
         </scene>
         <!--Register View Controller-->
         <scene sceneID="Wp2-jv-97B">
@@ -559,9 +580,9 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
+                        <segue destination="IxX-hM-LPA" kind="relationship" relationship="viewControllers" id="Rdf-le-Ui9"/>
                         <segue destination="Ei3-JJ-P8p" kind="relationship" relationship="viewControllers" id="u0B-Vb-3Q4"/>
                         <segue destination="uQn-Z8-BIj" kind="relationship" relationship="viewControllers" id="Zve-Es-39C"/>
-                        <segue destination="IxX-hM-LPA" kind="relationship" relationship="viewControllers" id="Rdf-le-Ui9"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xqw-in-9MD" userLabel="First Responder" sceneMemberID="firstResponder"/>
