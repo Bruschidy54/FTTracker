@@ -173,17 +173,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="bBJ-YG-Nxw">
-                                <rect key="frame" x="0.0" y="64" width="375" height="300"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="300" id="RNz-9t-Opj"/>
-                                </constraints>
-                                <connections>
-                                    <outlet property="delegate" destination="IxX-hM-LPA" id="0oR-gz-BnQ"/>
-                                </connections>
-                            </mapView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Etu-7a-DHd">
-                                <rect key="frame" x="0.0" y="364" width="375" height="254"/>
+                                <rect key="frame" x="0.0" y="394" width="375" height="224"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TruckCell" id="6fS-07-xha">
@@ -200,24 +191,47 @@
                                     <outlet property="delegate" destination="IxX-hM-LPA" id="j0j-YE-TfH"/>
                                 </connections>
                             </tableView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="uKB-tT-zgY">
+                                <rect key="frame" x="0.0" y="64" width="375" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="llj-6E-2d5"/>
+                                </constraints>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="IxX-hM-LPA" id="FRD-i4-m9E"/>
+                                </connections>
+                            </searchBar>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="bBJ-YG-Nxw">
+                                <rect key="frame" x="0.0" y="94" width="375" height="300"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="RNz-9t-Opj"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="IxX-hM-LPA" id="0oR-gz-BnQ"/>
+                                </connections>
+                            </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="bBJ-YG-Nxw" firstAttribute="leading" secondItem="ZXe-qj-s7l" secondAttribute="leading" id="09N-DK-xZ0"/>
+                            <constraint firstItem="uKB-tT-zgY" firstAttribute="trailing" secondItem="ZXe-qj-s7l" secondAttribute="trailing" id="5nA-qh-C81"/>
                             <constraint firstItem="Etu-7a-DHd" firstAttribute="leading" secondItem="ZXe-qj-s7l" secondAttribute="leading" id="6Bu-p7-uQ7"/>
+                            <constraint firstItem="bBJ-YG-Nxw" firstAttribute="top" secondItem="uKB-tT-zgY" secondAttribute="bottom" id="BnV-VQ-Ewg"/>
                             <constraint firstItem="Etu-7a-DHd" firstAttribute="top" secondItem="bBJ-YG-Nxw" secondAttribute="bottom" id="GIL-KM-f3F"/>
                             <constraint firstItem="bBJ-YG-Nxw" firstAttribute="centerX" secondItem="0EV-KL-UMo" secondAttribute="centerX" id="UYU-2p-4u3"/>
                             <constraint firstItem="bBJ-YG-Nxw" firstAttribute="trailing" secondItem="ZXe-qj-s7l" secondAttribute="trailing" id="bnV-4s-kbF"/>
-                            <constraint firstItem="bBJ-YG-Nxw" firstAttribute="top" secondItem="ZXe-qj-s7l" secondAttribute="top" id="d0b-Ms-PlE"/>
                             <constraint firstItem="ZXe-qj-s7l" firstAttribute="bottom" secondItem="Etu-7a-DHd" secondAttribute="bottom" id="dbn-ez-dAt"/>
                             <constraint firstItem="ZXe-qj-s7l" firstAttribute="trailing" secondItem="Etu-7a-DHd" secondAttribute="trailing" id="gUF-FA-Y8h"/>
+                            <constraint firstItem="uKB-tT-zgY" firstAttribute="top" secondItem="ZXe-qj-s7l" secondAttribute="top" id="h7w-Uh-T4e"/>
                             <constraint firstItem="Etu-7a-DHd" firstAttribute="centerX" secondItem="0EV-KL-UMo" secondAttribute="centerX" id="isW-CR-aCJ"/>
+                            <constraint firstItem="uKB-tT-zgY" firstAttribute="leading" secondItem="ZXe-qj-s7l" secondAttribute="leading" id="knd-J7-0nv"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ZXe-qj-s7l"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Map" id="ZRK-Hb-EmV"/>
                     <connections>
                         <outlet property="mapView" destination="bBJ-YG-Nxw" id="oc4-V7-I7A"/>
+                        <outlet property="searchBar" destination="uKB-tT-zgY" id="Tc4-AM-qyJ"/>
                         <outlet property="tableView" destination="Etu-7a-DHd" id="bXv-7V-p2r"/>
                     </connections>
                 </viewController>
