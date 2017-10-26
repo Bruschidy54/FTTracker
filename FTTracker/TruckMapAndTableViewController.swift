@@ -47,7 +47,7 @@ class TruckMapAndTableViewController: UIViewController, UITableViewDelegate, UIT
         
         addSampleFoodTrucks()
         
-        self.navigationItem.hidesBackButton = true
+        self.navigationController?.navigationBar.backItem?.backBarButtonItem?.isEnabled = false
         
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 120
@@ -118,8 +118,40 @@ class TruckMapAndTableViewController: UIViewController, UITableViewDelegate, UIT
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let identifier = "TruckCell"
-        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, forIndexPath: indexPath) as FoodTruckTableViewCell
-        return cell!
+        if let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as? FoodTruckTableViewCell {
+            var foodTruck: FoodTruck?
+            if searchActive && filteredFoodTrucks.count > 0 {
+                foodTruck = filteredFoodTrucks[indexPath.row]
+            } else if searchActive && filteredFoodTrucks.count == 0 {
+                foodTruck = nil
+                // TO DO: remove cells and write (similar to GTD style: "Your search did not match any entries. Try again."
+            } else if !searchActive && foodTrucks.count == 0 {
+                foodTruck = nil
+                // TO DO: remove cells and write (similar to GTD style: "No food trucks at this time."
+            } else {
+                foodTruck = foodTrucks[indexPath.row]
+            }
+            if let truck = foodTruck {
+                if let latitude = truck.latitude, let longitude = truck.longitude {
+                    getAddressFromGeocodeCoordinate(location: CLLocation(latitude: latitude, longitude: longitude), cell: cell)
+                    cell.distanceLabel.text = String(format: "%0.2f mi.", truck.distance)
+                } else {
+                    cell.distanceLabel.text = "Location not listed"
+                }
+                    cell.titleLabel.text = truck.name
+                    cell.titleLabel.preferredMaxLayoutWidth = cell.titleLabel.frame.size.width
+                // TO DO: Update to include new image system
+                    cell.logoImage.image = conversion(post: "")
+                    cell.logoImage.layer.cornerRadius = 5
+                cell.logoImage.clipsToBounds = true
+                cell.ratingView.rating = truck.rating
+               // cell.numberOfReviewsLabel.text = String(truck.ratings.count)
+                cell.categoryLabel.text = truck.category
+                cell.addressLabel.text = truck.address
+            }
+        return cell
+        }
+        return FoodTruckTableViewCell()
     }
     
     // MARK: - CLLocationManagerDelegate Methods
@@ -340,13 +372,44 @@ class TruckMapAndTableViewController: UIViewController, UITableViewDelegate, UIT
     
     func getAddressFromGeocodeCoordinate(location: CLLocation, cell: FoodTruckTableViewCell) {
         let geocoder = CLGeocoder()
-        geocoder.reverseGeocodeLocation(location, completionHandler: { (placemarks: [CLPlacemark]?, error: NSError?) -> Void in
-            let placemark = placemarks?.first
-            if let subT = placemark?.subThoroughfare {
-                let address = "\(subT) \(placemark!.thoroughfare!), \(placemark!.locality!)"
-                cell.addressLabel.text = address
-            }
-            } as! CLGeocodeCompletionHandler)
+        
+        geocoder.reverseGeocodeLocation(location, completionHandler:
+            {(placemarks, error) in
+                if (error != nil)
+                {
+                    print("reverse geodcode fail: \(error!.localizedDescription)")
+                }
+                let pm = placemarks! as [CLPlacemark]
+                
+                if pm.count > 0 {
+                    let pm = placemarks![0]
+                    print(pm.country)
+                    print(pm.locality)
+                    print(pm.subLocality)
+                    print(pm.thoroughfare)
+                    print(pm.postalCode)
+                    print(pm.subThoroughfare)
+                    var addressString : String = ""
+                    if pm.subLocality != nil {
+                        addressString = addressString + pm.subLocality! + ", "
+                    }
+                    if pm.thoroughfare != nil {
+                        addressString = addressString + pm.thoroughfare! + ", "
+                    }
+                    if pm.locality != nil {
+                        addressString = addressString + pm.locality! + ", "
+                    }
+                    if pm.country != nil {
+                        addressString = addressString + pm.country! + ", "
+                    }
+                    if pm.postalCode != nil {
+                        addressString = addressString + pm.postalCode! + " "
+                    }
+                    
+                    
+                     cell.addressLabel.text = addressString
+                }
+        })
     }
     
     func conversion(post: String) -> UIImage {
@@ -357,6 +420,7 @@ class TruckMapAndTableViewController: UIViewController, UITableViewDelegate, UIT
             let image = UIImage(data: imageData as Data)
             return image!
             }
+            return UIImage()
         }
     }
     
