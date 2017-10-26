@@ -11,6 +11,8 @@
 		CD73C5261F984C5D0032766C /* TruckMapAndTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD73C5251F984C5D0032766C /* TruckMapAndTableViewController.swift */; };
 		CD73C5281F9AA65A0032766C /* FoodTruck.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD73C5271F9AA65A0032766C /* FoodTruck.swift */; };
 		CD73C52A1F9C27710032766C /* FoodTruckAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD73C5291F9C27710032766C /* FoodTruckAnnotation.swift */; };
+		CD73C52C1FA15D610032766C /* FoodTruckTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD73C52B1FA15D610032766C /* FoodTruckTableViewCell.swift */; };
+		CD73C52E1FA166C50032766C /* CosmosAccessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD73C52D1FA166C50032766C /* CosmosAccessibility.swift */; };
 		CD816F901F90596E007A2A6D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CD816F8D1F90592B007A2A6D /* GoogleService-Info.plist */; };
 		CD816F921F905AF9007A2A6D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDAD29FD1F90066100DD0573 /* Main.storyboard */; };
 		CD816F941F906937007A2A6D /* CurvedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD816F931F906937007A2A6D /* CurvedButton.swift */; };
@@ -42,6 +44,8 @@
 		CD73C5251F984C5D0032766C /* TruckMapAndTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TruckMapAndTableViewController.swift; sourceTree = "<group>"; };
 		CD73C5271F9AA65A0032766C /* FoodTruck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodTruck.swift; sourceTree = "<group>"; };
 		CD73C5291F9C27710032766C /* FoodTruckAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodTruckAnnotation.swift; sourceTree = "<group>"; };
+		CD73C52B1FA15D610032766C /* FoodTruckTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodTruckTableViewCell.swift; sourceTree = "<group>"; };
+		CD73C52D1FA166C50032766C /* CosmosAccessibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CosmosAccessibility.swift; sourceTree = "<group>"; };
 		CD816F8D1F90592B007A2A6D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CD816F931F906937007A2A6D /* CurvedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurvedButton.swift; sourceTree = "<group>"; };
 		CD816F951F916A05007A2A6D /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
@@ -123,6 +127,8 @@
 				CDAD29FF1F90088300DD0573 /* LoginViewController.swift */,
 				CD9881831F90061000661E4E /* AppDelegate.swift */,
 				CDAD29FD1F90066100DD0573 /* Main.storyboard */,
+				CD73C52D1FA166C50032766C /* CosmosAccessibility.swift */,
+				CD73C52B1FA15D610032766C /* FoodTruckTableViewCell.swift */,
 				CD73C5251F984C5D0032766C /* TruckMapAndTableViewController.swift */,
 				CD73C5291F9C27710032766C /* FoodTruckAnnotation.swift */,
 				CD73C5271F9AA65A0032766C /* FoodTruck.swift */,
@@ -356,6 +362,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD73C52E1FA166C50032766C /* CosmosAccessibility.swift in Sources */,
 				CD73C52A1F9C27710032766C /* FoodTruckAnnotation.swift in Sources */,
 				CD73C5261F984C5D0032766C /* TruckMapAndTableViewController.swift in Sources */,
 				CD816F981F916F28007A2A6D /* FTTextField.swift in Sources */,
@@ -365,6 +372,7 @@
 				CD73C5281F9AA65A0032766C /* FoodTruck.swift in Sources */,
 				CD816F9A1F916F49007A2A6D /* FTTextView.swift in Sources */,
 				CD9881841F90061000661E4E /* AppDelegate.swift in Sources */,
+				CD73C52C1FA15D610032766C /* FoodTruckTableViewCell.swift in Sources */,
 				CD816F961F916A05007A2A6D /* RegisterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

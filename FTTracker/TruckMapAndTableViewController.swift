@@ -18,46 +18,107 @@ class TruckMapAndTableViewController: UIViewController, UITableViewDelegate, UIT
     @IBOutlet var tableView: UITableView!
     
     var foodTrucks = [FoodTruck]()
+    var filteredFoodTrucks = [FoodTruck]()
+    var searchActive = false
     var geofences = [CLCircularRegion]()
     private var locationManager = CLLocationManager()
     private var currentLocation: CLLocation?
     
-
+    
+    //MARK: - View Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         mapView.showsUserLocation = true
         
-          mapView.delegate = self
+        mapView.delegate = self
         
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         
         if CLLocationManager.locationServicesEnabled() {
-         locationManager.requestAlwaysAuthorization()
-        locationManager.startUpdatingLocation()
+            locationManager.requestAlwaysAuthorization()
+            locationManager.startUpdatingLocation()
         }
-
         
-       queryFoodTrucks()
+        
+        queryFoodTrucks()
+        
+        addSampleFoodTrucks()
+        
+        self.navigationItem.hidesBackButton = true
+        
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 120
         
         
         // Share FoodTrucks with other tab bars using similar method. Move into separate func
-//        let barViewControllers = self.tabBarController?.viewControllers
-//        let svc = barViewControllers![1] as! ListViewController
-//        svc.foodTrucks = self.foodTrucks
-
+        //        let barViewControllers = self.tabBarController?.viewControllers
+        //        let svc = barViewControllers![1] as! ListViewController
+        //        svc.foodTrucks = self.foodTrucks
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        filteredFoodTrucks.removeAll()
+        searchBar.text = ""
+        searchActive = false
+        searchBar.resignFirstResponder()
+    }
+    
+    // MARK: - UISearchBarDelegate Methods
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchActive = true
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchActive = true
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchActive = false
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchActive = false
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        filteredFoodTrucks = foodTrucks.filter({ (foodTruck) -> Bool in
+            let tmp: FoodTruck = foodTruck
+            let range = (tmp.name as NSString).range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
+            return range.location != NSNotFound
+        })
+        if filteredFoodTrucks.count == 0 && searchBar.text != "" {
+            searchActive = true
+        } else if filteredFoodTrucks.count == 0 && searchBar.text == "" {
+            searchActive = false
+        } else {
+            searchActive = true
+        }
+        tableView.reloadData()
     }
     
     // MARK: - UITableViewDelegate Methods
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        if(searchActive) {
+            return filteredFoodTrucks.count
+        } else {
+            return foodTrucks.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let identifier = "TruckCell"
-        let cell = tableView.dequeueReusableCell(withIdentifier: identifier)
+        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, forIndexPath: indexPath) as FoodTruckTableViewCell
         return cell!
     }
     
@@ -92,12 +153,12 @@ class TruckMapAndTableViewController: UIViewController, UITableViewDelegate, UIT
             let foodTruckDict = snapshot.value as! [String:Any]
             let foodTruck = FoodTruck.init(dict: foodTruckDict)
             let couponRef = FIRDatabase.database().reference().child("coupons").child("\(foodTruck.uid)").child((UserDefaults.standard.value(forKey: "uid")! as! String))
-            // Change implementation to use new coupon data structure
-//            let couponDict = ["couponCode": "\(foodTruck.couponCode).\(UserDefaults.standard().valueForKey("uid")!).\(couponRef.key)", "couponDesc": (foodTruck.couponDesc) as String, "couponDiscount": (foodTruck.couponDiscount) as String, "active?": true, "couponExp": (foodTruck.couponExp) as String, "foodTruck": (foodTruck.name) as String, "userID": UserDefaults.standardUserDefaults().valueForKey("uid") as! String]
-//            couponRef.setValue(couponDict)
+            // TO DO: Change implementation to use new coupon data structure
+            //            let couponDict = ["couponCode": "\(foodTruck.couponCode).\(UserDefaults.standard().valueForKey("uid")!).\(couponRef.key)", "couponDesc": (foodTruck.couponDesc) as String, "couponDiscount": (foodTruck.couponDiscount) as String, "active?": true, "couponExp": (foodTruck.couponExp) as String, "foodTruck": (foodTruck.name) as String, "userID": UserDefaults.standardUserDefaults().valueForKey("uid") as! String]
+            //            couponRef.setValue(couponDict)
             self.presentLocalNotifications(foodTruck: foodTruck.name)
         })
-
+        
     }
     
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
@@ -106,18 +167,18 @@ class TruckMapAndTableViewController: UIViewController, UITableViewDelegate, UIT
     
     func locationManager(_ manager: CLLocationManager, didDetermineState state: CLRegionState, for region: CLRegion) {
         print("did determine state")
-//        let truckRef = DataService.dataService.REF_BASE.childByAppendingPath("foodTrucks").childByAppendingPath(region.identifier)
-//        truckRef.observeEventType(.Value, withBlock: { snapshot in
-//            let foodTruck = FoodTruck.init(snapshot: snapshot)
-//            let couponRef = DataService.dataService.REF_BASE.childByAppendingPath("coupons").childByAppendingPath("\(foodTruck.name)\(NSUserDefaults.standardUserDefaults().valueForKey("uid")!)")
-//            let couponDict = ["couponCode": "\(foodTruck.couponCode).\(NSUserDefaults.standardUserDefaults().valueForKey("uid")!).\(couponRef.key)", "couponDesc": (foodTruck.couponDesc) as String, "couponDiscount": (foodTruck.couponDiscount) as String, "active?": true, "couponExp": (foodTruck.couponExp) as String, "foodTruck": (foodTruck.name) as String, "userID": NSUserDefaults.standardUserDefaults().valueForKey("uid") as! String]
-//            couponRef.setValue(couponDict)
-//            if state.rawValue.description == "1" {
-//
-//                print("inside \(region.identifier) geofence")
-//                self.presentLocalNotifications(foodTruck.name)
-//            }
-//        })
+        //        let truckRef = DataService.dataService.REF_BASE.childByAppendingPath("foodTrucks").childByAppendingPath(region.identifier)
+        //        truckRef.observeEventType(.Value, withBlock: { snapshot in
+        //            let foodTruck = FoodTruck.init(snapshot: snapshot)
+        //            let couponRef = DataService.dataService.REF_BASE.childByAppendingPath("coupons").childByAppendingPath("\(foodTruck.name)\(NSUserDefaults.standardUserDefaults().valueForKey("uid")!)")
+        //            let couponDict = ["couponCode": "\(foodTruck.couponCode).\(NSUserDefaults.standardUserDefaults().valueForKey("uid")!).\(couponRef.key)", "couponDesc": (foodTruck.couponDesc) as String, "couponDiscount": (foodTruck.couponDiscount) as String, "active?": true, "couponExp": (foodTruck.couponExp) as String, "foodTruck": (foodTruck.name) as String, "userID": NSUserDefaults.standardUserDefaults().valueForKey("uid") as! String]
+        //            couponRef.setValue(couponDict)
+        //            if state.rawValue.description == "1" {
+        //
+        //                print("inside \(region.identifier) geofence")
+        //                self.presentLocalNotifications(foodTruck.name)
+        //            }
+        //        })
         
     }
     
@@ -143,9 +204,10 @@ class TruckMapAndTableViewController: UIViewController, UITableViewDelegate, UIT
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         print("callout accessory tapped")
         let truckAnnotation = view.annotation as! FoodTruckAnnotation
-//        foodTruckOfAnnotation = truckAnnotation.foodTruck!
-//        self.performSegueWithIdentifier("MapToProfileSegue", sender: nil)
-
+        // TO DO: Implement segue to selected food truck
+        //        foodTruckOfAnnotation = truckAnnotation.foodTruck!
+        //        self.performSegueWithIdentifier("MapToProfileSegue", sender: nil)
+        
     }
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
@@ -188,7 +250,7 @@ class TruckMapAndTableViewController: UIViewController, UITableViewDelegate, UIT
         UIApplication.shared.scheduleLocalNotification(notification)
         
     }
-        
+    
     
     // MARK: - Methods
     
@@ -210,10 +272,10 @@ class TruckMapAndTableViewController: UIViewController, UITableViewDelegate, UIT
                         self.dropPinForFoodTruck(foodTruck: foodTruck)
                         print("Added annotation")
                     }
-                
+                    
                 }
                 self.foodTrucks.append(foodTruck)
-                print(foodTruck)
+                
             }
         })
         self.foodTrucks.sort(by: { $0.distance < $1.distance })
@@ -240,7 +302,7 @@ class TruckMapAndTableViewController: UIViewController, UITableViewDelegate, UIT
         annotation.coordinate = CLLocationCoordinate2D(latitude: foodTruck.latitude!, longitude: foodTruck.longitude!)
         annotation.title = foodTruck.name
         if let departure = foodTruck.departureTime {
-        annotation.subtitle = "Departing \(departure)"
+            annotation.subtitle = "Departing \(departure)"
         }
         annotation.foodTruck = foodTruck
         let geoRegion = CLCircularRegion(center: annotation.coordinate, radius: radius, identifier: foodTruck.uid)
@@ -252,27 +314,60 @@ class TruckMapAndTableViewController: UIViewController, UITableViewDelegate, UIT
         
     }
     
-//    func reverseGeocode(location: CLLocation){
-//        let geocoder = CLGeocoder()
-//        geocoder.reverseGeocodeLocation(location) { (placemarks: [CLPlacemark]?, error: NSError?) in
-//            if error != nil {
-//                print(error?.localizedDescription)
-//            }
-//            self.locationManager.stopUpdatingLocation()
-//            } as! CLGeocodeCompletionHandler
-//    }
+//        func reverseGeocode(location: CLLocation){
+//            let geocoder = CLGeocoder()
+//            geocoder.reverseGeocodeLocation(location) { (placemarks: [CLPlacemark]?, error: NSError?) in
+//                if error != nil {
+//                    print(error?.localizedDescription)
+//                }
+//                self.locationManager.stopUpdatingLocation()
+//                } as! CLGeocodeCompletionHandler
+//        }
     
-    
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func addSampleFoodTrucks() {
+        let foodTruckOneDict = ["name" : "Dan's" , "email" : "dan", "password" : "danley", "uid" : "123", "rating" : 0.0 , "description" : "We suck", "category" : "donuts", "twitter" : "dan", "latitude" : 41.9, "longitude" : -87.64, "departureTime" : 0.0, "joinedDate" : 0.0, "address" : "123 High Street"] as [String : Any]
+        let foodTruckOne = FoodTruck.init(dict: foodTruckOneDict)
+        
+        let foodTruckTwoDict = ["name" : "Mike's" , "email" : "Mike", "password" : "mikeley", "uid" : "124", "rating" : 5.0 , "description" : "We rock", "category" : "scones", "twitter" : "mike", "latitude" : 41.88, "longitude" : -87.62, "departureTime" : 0.0, "joinedDate" : 0.0, "address" : "124 High Street"] as [String : Any]
+        let foodTruckTwo = FoodTruck.init(dict: foodTruckTwoDict)
+        
+        foodTrucks.append(foodTruckOne)
+        foodTrucks.append(foodTruckTwo)
+        
+        dropPinForFoodTruck(foodTruck: foodTruckOne)
+        dropPinForFoodTruck(foodTruck: foodTruckTwo)
     }
-    */
-
+    
+    func getAddressFromGeocodeCoordinate(location: CLLocation, cell: FoodTruckTableViewCell) {
+        let geocoder = CLGeocoder()
+        geocoder.reverseGeocodeLocation(location, completionHandler: { (placemarks: [CLPlacemark]?, error: NSError?) -> Void in
+            let placemark = placemarks?.first
+            if let subT = placemark?.subThoroughfare {
+                let address = "\(subT) \(placemark!.thoroughfare!), \(placemark!.locality!)"
+                cell.addressLabel.text = address
+            }
+            } as! CLGeocodeCompletionHandler)
+    }
+    
+    func conversion(post: String) -> UIImage {
+        if post == "" {
+            return UIImage(named: "QuestionMarkImage")!
+        } else {
+            if let imageData = NSData(base64Encoded: post, options: [] ) {
+            let image = UIImage(data: imageData as Data)
+            return image!
+            }
+        }
+    }
+    
+    /*
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
