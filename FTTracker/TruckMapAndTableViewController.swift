@@ -43,15 +43,16 @@ class TruckMapAndTableViewController: UIViewController, UITableViewDelegate, UIT
         }
         
         
-        queryFoodTrucks()
-        
-        addSampleFoodTrucks()
+//        queryFoodTrucks()
+//
+//        addSampleFoodTrucks()
         
         self.navigationController?.navigationBar.backItem?.backBarButtonItem?.isEnabled = false
         
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 120
         
+ 
         
         // Share FoodTrucks with other tab bars using similar method. Move into separate func
         //        let barViewControllers = self.tabBarController?.viewControllers
@@ -160,17 +161,22 @@ class TruckMapAndTableViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        defer { currentLocation = locations.last! }
+        if let firstLocation = locations.first {
+            currentLocation = firstLocation
+        }
         
         if currentLocation == nil {
             
-            if let userLocation = locations.last {
+            if let userLocation = locations.first {
                 let viewRegion = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, 10000, 10000)
                 mapView.setRegion(viewRegion, animated: true)
             }
-        }
+        } else {
         print("current location: \(currentLocation)")
         locationManager.stopUpdatingLocation()
+        queryFoodTrucks()
+        addSampleFoodTrucks()
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didStartMonitoringFor region: CLRegion) {
@@ -298,8 +304,11 @@ class TruckMapAndTableViewController: UIViewController, UITableViewDelegate, UIT
                 let foodTruck = FoodTruck.init(dict: foodTruckDict)
                 print("created food truck: \(foodTruck.uid)")
                 if let latitude = foodTruck.latitude, let longitude = foodTruck.longitude {
+                    if self.currentLocation != nil {
                     foodTruck.distance = self.currentLocation!.distance(from: CLLocation(latitude: latitude , longitude: longitude)) * 0.000621371
-                    
+                    } else {
+                        foodTruck.distance = 0
+                    }
                     DispatchQueue.main.async() {
                         self.dropPinForFoodTruck(foodTruck: foodTruck)
                         print("Added annotation")
@@ -307,10 +316,12 @@ class TruckMapAndTableViewController: UIViewController, UITableViewDelegate, UIT
                     
                 }
                 self.foodTrucks.append(foodTruck)
-                
+                self.tableView.reloadData()
             }
+            // sort here instead?
         })
         self.foodTrucks.sort(by: { $0.distance < $1.distance })
+        tableView.reloadData()
     }
     
     func zoomCenter() {
@@ -359,15 +370,30 @@ class TruckMapAndTableViewController: UIViewController, UITableViewDelegate, UIT
     func addSampleFoodTrucks() {
         let foodTruckOneDict = ["name" : "Dan's" , "email" : "dan", "password" : "danley", "uid" : "123", "rating" : 0.0 , "description" : "We suck", "category" : "donuts", "twitter" : "dan", "latitude" : 41.9, "longitude" : -87.64, "departureTime" : 0.0, "joinedDate" : 0.0, "address" : "123 High Street"] as [String : Any]
         let foodTruckOne = FoodTruck.init(dict: foodTruckOneDict)
+        if let latitude = foodTruckOne.latitude, let longitude = foodTruckOne.longitude {
+            if currentLocation != nil {
+            foodTruckOne.distance = self.currentLocation!.distance(from: CLLocation(latitude: latitude , longitude: longitude)) * 0.000621371
+            } else {
+                foodTruckOne.distance = 0
+            }
+        }
         
         let foodTruckTwoDict = ["name" : "Mike's" , "email" : "Mike", "password" : "mikeley", "uid" : "124", "rating" : 5.0 , "description" : "We rock", "category" : "scones", "twitter" : "mike", "latitude" : 41.88, "longitude" : -87.62, "departureTime" : 0.0, "joinedDate" : 0.0, "address" : "124 High Street"] as [String : Any]
         let foodTruckTwo = FoodTruck.init(dict: foodTruckTwoDict)
+        if let latitude = foodTruckTwo.latitude, let longitude = foodTruckTwo.longitude {
+            if currentLocation != nil {
+            foodTruckTwo.distance = self.currentLocation!.distance(from: CLLocation(latitude: latitude , longitude: longitude)) * 0.000621371
+            } else {
+                foodTruckTwo.distance = 0
+            }
+        }
         
         foodTrucks.append(foodTruckOne)
         foodTrucks.append(foodTruckTwo)
         
         dropPinForFoodTruck(foodTruck: foodTruckOne)
         dropPinForFoodTruck(foodTruck: foodTruckTwo)
+        tableView.reloadData()
     }
     
     func getAddressFromGeocodeCoordinate(location: CLLocation, cell: FoodTruckTableViewCell) {

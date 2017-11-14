@@ -20,7 +20,7 @@ class FoodTruck {
     var latitude: Double?
     var longitude: Double?
     var uid: String
-    var departureTime: Double?
+    var departureTime: Date?
     var joinedDate: Double
     var address: String?
     var distance: Double = 0
@@ -42,7 +42,10 @@ class FoodTruck {
         self.twitter = dict["twitter"] as? String
         self.latitude = dict["latitude"] as? Double
         self.longitude = dict["longitude"] as? Double
-        self.departureTime = dict["departureTime"] as? Double
+        if let departTime = dict["departureTime"] as? Double {
+        self.departureTime = Date(timeIntervalSince1970: departTime)
+        }
+        
         self.joinedDate = dict["joinedDate"] as! Double
         self.address = dict["address"] as? String
     }
