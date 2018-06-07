@@ -17,6 +17,8 @@ class FoodTruckTableViewCell: UITableViewCell {
     @IBOutlet var categoryLabel: UILabel!
     @IBOutlet var distanceLabel: UILabel!
     
+    var foodTruck: FoodTruck?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

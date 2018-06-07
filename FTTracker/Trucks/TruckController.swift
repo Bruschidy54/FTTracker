@@ -11,11 +11,13 @@ import MapKit
 import CoreLocation
 import Firebase
 
-class TruckMapAndTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate, MKMapViewDelegate, UISearchBarDelegate {
+class TruckController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     
     @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var mapView: MKMapView!
     @IBOutlet var tableView: UITableView!
+
+    @IBOutlet var tableHeight: NSLayoutConstraint!
     
     var foodTrucks = [FoodTruck]()
     var filteredFoodTrucks = [FoodTruck]()
@@ -23,6 +25,13 @@ class TruckMapAndTableViewController: UIViewController, UITableViewDelegate, UIT
     var geofences = [CLCircularRegion]()
     private var locationManager = CLLocationManager()
     private var currentLocation: CLLocation?
+    
+    let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .none
+        return formatter
+    }()
     
     
     //MARK: - View Lifecycle
@@ -42,10 +51,12 @@ class TruckMapAndTableViewController: UIViewController, UITableViewDelegate, UIT
             locationManager.startUpdatingLocation()
         }
         
+        let tableTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTableTap))
+        tableView.addGestureRecognizer(tableTapGestureRecognizer)
         
-//        queryFoodTrucks()
-//
-//        addSampleFoodTrucks()
+        let mapTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleMapTap))
+        mapView.addGestureRecognizer(mapTapGestureRecognizer)
+        
         
         self.navigationController?.navigationBar.backItem?.backBarButtonItem?.isEnabled = false
         
@@ -53,11 +64,7 @@ class TruckMapAndTableViewController: UIViewController, UITableViewDelegate, UIT
         tableView.estimatedRowHeight = 120
         
  
-        
-        // Share FoodTrucks with other tab bars using similar method. Move into separate func
-        //        let barViewControllers = self.tabBarController?.viewControllers
-        //        let svc = barViewControllers![1] as! ListViewController
-        //        svc.foodTrucks = self.foodTrucks
+    
         
     }
     
@@ -73,87 +80,7 @@ class TruckMapAndTableViewController: UIViewController, UITableViewDelegate, UIT
         searchBar.resignFirstResponder()
     }
     
-    // MARK: - UISearchBarDelegate Methods
-    
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        searchActive = true
-    }
-    
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        searchActive = true
-    }
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchActive = false
-    }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchActive = false
-    }
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        filteredFoodTrucks = foodTrucks.filter({ (foodTruck) -> Bool in
-            let tmp: FoodTruck = foodTruck
-            let range = (tmp.name as NSString).range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
-            return range.location != NSNotFound
-        })
-        if filteredFoodTrucks.count == 0 && searchBar.text != "" {
-            searchActive = true
-        } else if filteredFoodTrucks.count == 0 && searchBar.text == "" {
-            searchActive = false
-        } else {
-            searchActive = true
-        }
-        tableView.reloadData()
-    }
-    
-    // MARK: - UITableViewDelegate Methods
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if(searchActive) {
-            return filteredFoodTrucks.count
-        } else {
-            return foodTrucks.count
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let identifier = "TruckCell"
-        if let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as? FoodTruckTableViewCell {
-            var foodTruck: FoodTruck?
-            if searchActive && filteredFoodTrucks.count > 0 {
-                foodTruck = filteredFoodTrucks[indexPath.row]
-            } else if searchActive && filteredFoodTrucks.count == 0 {
-                foodTruck = nil
-                // TO DO: remove cells and write (similar to GTD style: "Your search did not match any entries. Try again."
-            } else if !searchActive && foodTrucks.count == 0 {
-                foodTruck = nil
-                // TO DO: remove cells and write (similar to GTD style: "No food trucks at this time."
-            } else {
-                foodTruck = foodTrucks[indexPath.row]
-            }
-            if let truck = foodTruck {
-                if let latitude = truck.latitude, let longitude = truck.longitude {
-                    getAddressFromGeocodeCoordinate(location: CLLocation(latitude: latitude, longitude: longitude), cell: cell)
-                    cell.distanceLabel.text = String(format: "%0.2f mi.", truck.distance)
-                } else {
-                    cell.distanceLabel.text = "Location not listed"
-                }
-                    cell.titleLabel.text = truck.name
-                    cell.titleLabel.preferredMaxLayoutWidth = cell.titleLabel.frame.size.width
-                // TO DO: Update to include new image system
-                    cell.logoImage.image = conversion(post: "")
-                    cell.logoImage.layer.cornerRadius = 5
-                cell.logoImage.clipsToBounds = true
-                cell.ratingView.rating = truck.rating
-               // cell.numberOfReviewsLabel.text = String(truck.ratings.count)
-                cell.categoryLabel.text = truck.category
-                cell.addressLabel.text = truck.address
-            }
-        return cell
-        }
-        return FoodTruckTableViewCell()
-    }
+
     
     // MARK: - CLLocationManagerDelegate Methods
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -172,7 +99,7 @@ class TruckMapAndTableViewController: UIViewController, UITableViewDelegate, UIT
                 mapView.setRegion(viewRegion, animated: true)
             }
         } else {
-        print("current location: \(currentLocation)")
+        print("current location: \(currentLocation ?? CLLocation())")
         locationManager.stopUpdatingLocation()
         queryFoodTrucks()
         addSampleFoodTrucks()
@@ -186,39 +113,23 @@ class TruckMapAndTableViewController: UIViewController, UITableViewDelegate, UIT
     
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
         print("Entered region \(region.identifier)")
-        let truckRef = FIRDatabase.database().reference().child("foodTrucks").child(region.identifier)
-        truckRef.observe(.value, with: { snapshot in
-            let foodTruckDict = snapshot.value as! [String:Any]
-            let foodTruck = FoodTruck.init(dict: foodTruckDict)
-            let couponRef = FIRDatabase.database().reference().child("coupons").child("\(foodTruck.uid)").child((UserDefaults.standard.value(forKey: "uid")! as! String))
+//        let truckRef = FIRDatabase.database().reference().child("foodTrucks").child(region.identifier)
+//        truckRef.observe(.value, with: { snapshot in
+//            let foodTruckDict = snapshot.value as! [String:Any]
+//            let foodTruck = FoodTruck.init(dict: foodTruckDict)
+//            let couponRef = FIRDatabase.database().reference().child("coupons").child("\(foodTruck.uid)").child((UserDefaults.standard.value(forKey: "uid")! as! String))
             // TO DO: Change implementation to use new coupon data structure
             //            let couponDict = ["couponCode": "\(foodTruck.couponCode).\(UserDefaults.standard().valueForKey("uid")!).\(couponRef.key)", "couponDesc": (foodTruck.couponDesc) as String, "couponDiscount": (foodTruck.couponDiscount) as String, "active?": true, "couponExp": (foodTruck.couponExp) as String, "foodTruck": (foodTruck.name) as String, "userID": UserDefaults.standardUserDefaults().valueForKey("uid") as! String]
             //            couponRef.setValue(couponDict)
-            self.presentLocalNotifications(foodTruck: foodTruck.name)
-        })
+//            self.presentLocalNotifications(foodTruck: foodTruck.name)
+//        })
         
     }
     
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
         print("Exited region\(region.identifier)")
     }
-    
-    func locationManager(_ manager: CLLocationManager, didDetermineState state: CLRegionState, for region: CLRegion) {
-        print("did determine state")
-        //        let truckRef = DataService.dataService.REF_BASE.childByAppendingPath("foodTrucks").childByAppendingPath(region.identifier)
-        //        truckRef.observeEventType(.Value, withBlock: { snapshot in
-        //            let foodTruck = FoodTruck.init(snapshot: snapshot)
-        //            let couponRef = DataService.dataService.REF_BASE.childByAppendingPath("coupons").childByAppendingPath("\(foodTruck.name)\(NSUserDefaults.standardUserDefaults().valueForKey("uid")!)")
-        //            let couponDict = ["couponCode": "\(foodTruck.couponCode).\(NSUserDefaults.standardUserDefaults().valueForKey("uid")!).\(couponRef.key)", "couponDesc": (foodTruck.couponDesc) as String, "couponDiscount": (foodTruck.couponDiscount) as String, "active?": true, "couponExp": (foodTruck.couponExp) as String, "foodTruck": (foodTruck.name) as String, "userID": NSUserDefaults.standardUserDefaults().valueForKey("uid") as! String]
-        //            couponRef.setValue(couponDict)
-        //            if state.rawValue.description == "1" {
-        //
-        //                print("inside \(region.identifier) geofence")
-        //                self.presentLocalNotifications(foodTruck.name)
-        //            }
-        //        })
-        
-    }
+
     
     // MARK: - MKMapViewDelegate Methods
     func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
@@ -234,14 +145,18 @@ class TruckMapAndTableViewController: UIViewController, UITableViewDelegate, UIT
             let pin = MKAnnotationView(annotation: annotation, reuseIdentifier: nil)
             pin.image = UIImage(named: "foodTruckImage")
             pin.canShowCallout = true
-            pin.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+            let viewTruckButton = UIButton(frame:CGRect(x: 0, y: 0, width: 45, height: 30))
+            viewTruckButton.backgroundColor = UIColor(red: 74/255, green: 144/255, blue: 226/255, alpha: 1)
+            viewTruckButton.layer.cornerRadius = 4
+            viewTruckButton.setTitle("View", for: .normal)
+            pin.rightCalloutAccessoryView = viewTruckButton
             return pin
         }
     }
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         print("callout accessory tapped")
-        let truckAnnotation = view.annotation as! FoodTruckAnnotation
+//        let truckAnnotation = view.annotation as! FoodTruckAnnotation
         // TO DO: Implement segue to selected food truck
         //        foodTruckOfAnnotation = truckAnnotation.foodTruck!
         //        self.performSegueWithIdentifier("MapToProfileSegue", sender: nil)
@@ -261,33 +176,8 @@ class TruckMapAndTableViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     // MARK: - Notifications
-    func registerLocalNotifications() {
-        // TO DO: Look up new terminology in UserNotifications
-        let notificationSettings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
-        UIApplication.shared.registerUserNotificationSettings(notificationSettings)
-    }
-    
-    func presentLocalNotifications(foodTruck: String) {
-        guard let settings = UIApplication.shared.currentUserNotificationSettings else { return }
-        
-        if settings.types == [] {
-            let ac = UIAlertController(title: "Notification Error",
-                                       message: "Either we don't have permission to schedule notifications or we haven't asked yet",
-                                       preferredStyle: .alert)
-            ac.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            present(ac, animated: true, completion: nil)
-            return
-        }
-        
-        let notification = UILocalNotification()
-        notification.fireDate = NSDate(timeIntervalSinceNow: 10) as Date
-        notification.alertBody = "\(foodTruck) has a coupon available!"
-        notification.alertAction = "claim"
-        notification.soundName = UILocalNotificationDefaultSoundName
-        notification.userInfo = ["CustomField1": foodTruck]
-        UIApplication.shared.scheduleLocalNotification(notification)
-        
-    }
+ 
+    // Look up how to do
     
     
     // MARK: - Methods
@@ -305,7 +195,7 @@ class TruckMapAndTableViewController: UIViewController, UITableViewDelegate, UIT
                 print("created food truck: \(foodTruck.uid)")
                 if let latitude = foodTruck.latitude, let longitude = foodTruck.longitude {
                     if self.currentLocation != nil {
-                    foodTruck.distance = self.currentLocation!.distance(from: CLLocation(latitude: latitude , longitude: longitude)) * 0.000621371
+                        foodTruck.distance = self.currentLocation!.distance(from: CLLocation(latitude: latitude , longitude: longitude)) * 0.000621371
                     } else {
                         foodTruck.distance = 0
                     }
@@ -345,7 +235,8 @@ class TruckMapAndTableViewController: UIViewController, UITableViewDelegate, UIT
         annotation.coordinate = CLLocationCoordinate2D(latitude: foodTruck.latitude!, longitude: foodTruck.longitude!)
         annotation.title = foodTruck.name
         if let departure = foodTruck.departureTime {
-            annotation.subtitle = "Departing \(departure)"
+            let departureString = dateFormatter.string(from: departure)
+            annotation.subtitle = "Departing \(departureString)"
         }
         annotation.foodTruck = foodTruck
         let geoRegion = CLCircularRegion(center: annotation.coordinate, radius: radius, identifier: foodTruck.uid)
@@ -357,22 +248,32 @@ class TruckMapAndTableViewController: UIViewController, UITableViewDelegate, UIT
         
     }
     
-//        func reverseGeocode(location: CLLocation){
-//            let geocoder = CLGeocoder()
-//            geocoder.reverseGeocodeLocation(location) { (placemarks: [CLPlacemark]?, error: NSError?) in
-//                if error != nil {
-//                    print(error?.localizedDescription)
-//                }
-//                self.locationManager.stopUpdatingLocation()
-//                } as! CLGeocodeCompletionHandler
-//        }
+
+    @objc func handleMapTap() {
+        tableHeight.constant = 100
+        
+        UIView.animate(withDuration: 0.5, delay: 0.1, options: .curveEaseOut, animations: {
+            self.view.layoutIfNeeded()
+        }, completion: nil)
+    }
+    
+    @objc func handleTableTap() {
+        tableHeight.constant = 400
+        
+        UIView.animate(withDuration: 0.5, delay: 0.1, options: .curveEaseOut, animations: {
+            self.view.layoutIfNeeded()
+        }, completion: nil)
+        
+        
+    }
     
     func addSampleFoodTrucks() {
+        
         let foodTruckOneDict = ["name" : "Dan's" , "email" : "dan", "password" : "danley", "uid" : "123", "rating" : 0.0 , "description" : "We suck", "category" : "donuts", "twitter" : "dan", "latitude" : 41.9, "longitude" : -87.64, "departureTime" : 0.0, "joinedDate" : 0.0, "address" : "123 High Street"] as [String : Any]
         let foodTruckOne = FoodTruck.init(dict: foodTruckOneDict)
         if let latitude = foodTruckOne.latitude, let longitude = foodTruckOne.longitude {
             if currentLocation != nil {
-            foodTruckOne.distance = self.currentLocation!.distance(from: CLLocation(latitude: latitude , longitude: longitude)) * 0.000621371
+                foodTruckOne.distance = self.currentLocation!.distance(from: CLLocation(latitude: latitude , longitude: longitude)) * 0.000621371
             } else {
                 foodTruckOne.distance = 0
             }
@@ -382,7 +283,7 @@ class TruckMapAndTableViewController: UIViewController, UITableViewDelegate, UIT
         let foodTruckTwo = FoodTruck.init(dict: foodTruckTwoDict)
         if let latitude = foodTruckTwo.latitude, let longitude = foodTruckTwo.longitude {
             if currentLocation != nil {
-            foodTruckTwo.distance = self.currentLocation!.distance(from: CLLocation(latitude: latitude , longitude: longitude)) * 0.000621371
+                foodTruckTwo.distance = self.currentLocation!.distance(from: CLLocation(latitude: latitude , longitude: longitude)) * 0.000621371
             } else {
                 foodTruckTwo.distance = 0
             }
@@ -391,8 +292,9 @@ class TruckMapAndTableViewController: UIViewController, UITableViewDelegate, UIT
         foodTrucks.append(foodTruckOne)
         foodTrucks.append(foodTruckTwo)
         
-        dropPinForFoodTruck(foodTruck: foodTruckOne)
-        dropPinForFoodTruck(foodTruck: foodTruckTwo)
+        foodTrucks.forEach { (foodTruck) in
+            dropPinForFoodTruck(foodTruck: foodTruck)
+        }
         tableView.reloadData()
     }
     
@@ -409,12 +311,7 @@ class TruckMapAndTableViewController: UIViewController, UITableViewDelegate, UIT
                 
                 if pm.count > 0 {
                     let pm = placemarks![0]
-                    print(pm.country)
-                    print(pm.locality)
-                    print(pm.subLocality)
-                    print(pm.thoroughfare)
-                    print(pm.postalCode)
-                    print(pm.subThoroughfare)
+
                     var addressString : String = ""
                     if pm.subLocality != nil {
                         addressString = addressString + pm.subLocality! + ", "

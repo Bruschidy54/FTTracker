@@ -115,7 +115,8 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
                     let twitter = self.twitterTextField.text ?? ""
                     let category = self.categoryTextField.text ?? ""
                     let description = self.descriptionTextView.text ?? ""
-                    let foodTruckDict: [String : Any] = ["name" : name, "email" : email, "password" : password, "phone" : phone, "rating" : 0, "twitter" : twitter, "category" : category, "description" : description, "joinedDate" : Date().timeIntervalSince1970, "uid" : UserDefaults.standard.value(forKey: "uid"), ]
+                    guard let uid = UserDefaults.standard.value(forKey: "uid") else { return }
+                    let foodTruckDict: [String : Any] = ["name" : name, "email" : email, "password" : password, "phone" : phone, "rating" : 0, "twitter" : twitter, "category" : category, "description" : description, "joinedDate" : Date().timeIntervalSince1970, "uid" : uid ]
                     ref.child("FoodTrucks").setValue([user!.uid : foodTruckDict])
                     break
                 default:

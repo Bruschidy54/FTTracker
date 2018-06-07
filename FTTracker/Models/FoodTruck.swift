@@ -45,7 +45,6 @@ class FoodTruck {
         if let departTime = dict["departureTime"] as? Double {
         self.departureTime = Date(timeIntervalSince1970: departTime)
         }
-        
         self.joinedDate = dict["joinedDate"] as! Double
         self.address = dict["address"] as? String
     }

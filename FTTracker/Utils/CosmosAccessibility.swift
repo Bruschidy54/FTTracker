@@ -1,10 +1,8 @@
 //
 //  CosmosAccessibility.swift
 //  FTTracker
-//
-//  Created by Dylan Bruschi on 10/25/17.
-//  Copyright © 2017 Dylan Bruschi. All rights reserved.
-//
+
+// From evgenyneu/Cosmos on Github
 
 import Foundation
 import UIKit
