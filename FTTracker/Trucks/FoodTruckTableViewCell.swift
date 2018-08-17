@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Cosmos
 
 class FoodTruckTableViewCell: UITableViewCell {
     @IBOutlet var logoImage: UIImageView!

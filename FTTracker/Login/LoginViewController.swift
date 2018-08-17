@@ -34,7 +34,7 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func onGuestButtonTapped(_ sender: Any) {
-        FIRAuth.auth()?.signInAnonymously(completion: {(user, error) in
+        Auth.auth().signInAnonymously(completion: {(user, error) in
             if error != nil {
                 //Tells the user that there is an error and then gets firebase to tell them the error
                 let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
@@ -66,7 +66,7 @@ class LoginViewController: UIViewController {
 //    }
     
     func loginUser(withEmail email: String, andPassword password: String) {
-        FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
+        Auth.auth().signIn(withEmail: email, password: password, completion: { (user, error) in
             if error != nil {
                 //Tells the user that there is an error and then gets firebase to tell them the error
                 let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
@@ -78,6 +78,7 @@ class LoginViewController: UIViewController {
             } else {
                 print("Login successful!")
                 
+                self.dismiss(animated: true, completion: nil)
                 self.performSegue(withIdentifier: "LogInSegue", sender: self)
             }
         })

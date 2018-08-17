@@ -21,7 +21,7 @@ class TruckController: UIViewController, CLLocationManagerDelegate, MKMapViewDel
     
     var foodTrucks = [FoodTruck]()
     var filteredFoodTrucks = [FoodTruck]()
-    var searchActive = false
+     var searchActive = false
     var geofences = [CLCircularRegion]()
     private var locationManager = CLLocationManager()
     private var currentLocation: CLLocation?
@@ -43,6 +43,19 @@ class TruckController: UIViewController, CLLocationManagerDelegate, MKMapViewDel
         
         mapView.delegate = self
         
+        
+        setupTapGestureRecognizers()
+        setupLocationManager() 
+        setupNavigationBar()
+        
+        
+        
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 120
+        
+    }
+    
+    private func setupLocationManager() {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         
@@ -50,22 +63,14 @@ class TruckController: UIViewController, CLLocationManagerDelegate, MKMapViewDel
             locationManager.requestAlwaysAuthorization()
             locationManager.startUpdatingLocation()
         }
-        
+    }
+    
+    private func setupTapGestureRecognizers() {
         let tableTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTableTap))
         tableView.addGestureRecognizer(tableTapGestureRecognizer)
         
         let mapTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleMapTap))
         mapView.addGestureRecognizer(mapTapGestureRecognizer)
-        
-        
-        self.navigationController?.navigationBar.backItem?.backBarButtonItem?.isEnabled = false
-        
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 120
-        
- 
-    
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -78,6 +83,29 @@ class TruckController: UIViewController, CLLocationManagerDelegate, MKMapViewDel
         searchBar.text = ""
         searchActive = false
         searchBar.resignFirstResponder()
+    }
+    
+    private func setupNavigationBar() {
+        navigationItem.hidesBackButton = true
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "gear").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleLogOut))
+    }
+    
+    @objc func handleLogOut() {
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alertController.addAction(UIAlertAction(title: "Log Out", style: .destructive, handler: { (_) in
+            do {
+                
+                try Auth.auth().signOut()
+                let loginController = LoginViewController()
+                let navController = UINavigationController(rootViewController: loginController)
+                self.present(navController, animated: true, completion: nil)
+            } catch let signOutErr {
+                print("Failed to sign out:", signOutErr)
+            }
+        }))
+        
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(alertController, animated: true, completion: nil)
     }
     
 
@@ -183,13 +211,15 @@ class TruckController: UIViewController, CLLocationManagerDelegate, MKMapViewDel
     // MARK: - Methods
     
     func queryFoodTrucks() {
-        let ref = FIRDatabase.database().reference()
+        
+        
+        let ref = Database.database().reference()
         let foodTruckRef = ref.child("FoodTrucks")
         
         foodTruckRef.observe(.value, with: { snapshot in
             print(snapshot.childrenCount)
             let enumerator = snapshot.children
-            while let rest = enumerator.nextObject() as? FIRDataSnapshot {
+            while let rest = enumerator.nextObject() as? DataSnapshot {
                 let foodTruckDict = rest.value as! [String:Any]
                 let foodTruck = FoodTruck.init(dict: foodTruckDict)
                 print("created food truck: \(foodTruck.uid)")

@@ -10,6 +10,7 @@ import UIKit
 
 extension TruckController: UISearchBarDelegate {
     
+    
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchActive = true
     }

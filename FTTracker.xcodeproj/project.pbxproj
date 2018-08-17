@@ -7,12 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A06EE85249910CD5B029BCF /* Pods_FTTrackerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A78B1570474DF98ED8B49C1 /* Pods_FTTrackerTests.framework */; };
+		1F5D4C1E981949BFD72EF9DC /* Pods_FTTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB45CD792D027A95B86D581 /* Pods_FTTracker.framework */; };
 		CD6612DF1F9539AC00966A11 /* UserType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6612DE1F9539AC00966A11 /* UserType.swift */; };
 		CD73C5261F984C5D0032766C /* TruckController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD73C5251F984C5D0032766C /* TruckController.swift */; };
 		CD73C5281F9AA65A0032766C /* FoodTruck.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD73C5271F9AA65A0032766C /* FoodTruck.swift */; };
 		CD73C52A1F9C27710032766C /* FoodTruckAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD73C5291F9C27710032766C /* FoodTruckAnnotation.swift */; };
 		CD73C52C1FA15D610032766C /* FoodTruckTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD73C52B1FA15D610032766C /* FoodTruckTableViewCell.swift */; };
-		CD73C52E1FA166C50032766C /* CosmosAccessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD73C52D1FA166C50032766C /* CosmosAccessibility.swift */; };
 		CD816F901F90596E007A2A6D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CD816F8D1F90592B007A2A6D /* GoogleService-Info.plist */; };
 		CD816F921F905AF9007A2A6D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDAD29FD1F90066100DD0573 /* Main.storyboard */; };
 		CD816F941F906937007A2A6D /* CurvedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD816F931F906937007A2A6D /* CurvedButton.swift */; };
@@ -39,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1A78B1570474DF98ED8B49C1 /* Pods_FTTrackerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FTTrackerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		35FB39B76B19C550B475F086 /* Pods-FTTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FTTracker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FTTracker/Pods-FTTracker.debug.xcconfig"; sourceTree = "<group>"; };
 		B545E05C44DAC68580DF7F63 /* Pods-FTTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FTTracker.release.xcconfig"; path = "Pods/Target Support Files/Pods-FTTracker/Pods-FTTracker.release.xcconfig"; sourceTree = "<group>"; };
 		C54B7310AA5D19941043EC5E /* Pods-FTTrackerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FTTrackerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FTTrackerTests/Pods-FTTrackerTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -47,7 +49,6 @@
 		CD73C5271F9AA65A0032766C /* FoodTruck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodTruck.swift; sourceTree = "<group>"; };
 		CD73C5291F9C27710032766C /* FoodTruckAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodTruckAnnotation.swift; sourceTree = "<group>"; };
 		CD73C52B1FA15D610032766C /* FoodTruckTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodTruckTableViewCell.swift; sourceTree = "<group>"; };
-		CD73C52D1FA166C50032766C /* CosmosAccessibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CosmosAccessibility.swift; sourceTree = "<group>"; };
 		CD816F8D1F90592B007A2A6D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CD816F931F906937007A2A6D /* CurvedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurvedButton.swift; sourceTree = "<group>"; };
 		CD816F951F916A05007A2A6D /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
@@ -66,6 +67,7 @@
 		CDE0D67020B7353200CE3814 /* TruckController+UISearchBarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TruckController+UISearchBarDelegate.swift"; sourceTree = "<group>"; };
 		CDE0D67220B7358B00CE3814 /* TruckController+UITableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TruckController+UITableViewDelegate.swift"; sourceTree = "<group>"; };
 		D0DCEB47B9F2A9204E968147 /* Pods-FTTrackerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FTTrackerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FTTrackerTests/Pods-FTTrackerTests.release.xcconfig"; sourceTree = "<group>"; };
+		FCB45CD792D027A95B86D581 /* Pods_FTTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FTTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F5D4C1E981949BFD72EF9DC /* Pods_FTTracker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,6 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A06EE85249910CD5B029BCF /* Pods_FTTrackerTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,6 +104,8 @@
 		93A15B116EB8868ADA641DB0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FCB45CD792D027A95B86D581 /* Pods_FTTracker.framework */,
+				1A78B1570474DF98ED8B49C1 /* Pods_FTTrackerTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -139,7 +145,7 @@
 				CD91D1DA20C8A43C002F1E25 /* Models */,
 				CDE0D66F20B7336F00CE3814 /* Trucks */,
 				CDE0D66E20B72F1700CE3814 /* Login */,
-				CDE0D66D20B6318C00CE3814 /* Utils */,
+				CDE0D66D20B6318C00CE3814 /* Views */,
 				CD816F8D1F90592B007A2A6D /* GoogleService-Info.plist */,
 				CD9881831F90061000661E4E /* AppDelegate.swift */,
 				CDAD29FD1F90066100DD0573 /* Main.storyboard */,
@@ -159,15 +165,14 @@
 			path = FTTrackerTests;
 			sourceTree = "<group>";
 		};
-		CDE0D66D20B6318C00CE3814 /* Utils */ = {
+		CDE0D66D20B6318C00CE3814 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				CD816F931F906937007A2A6D /* CurvedButton.swift */,
 				CD816F991F916F49007A2A6D /* FTTextView.swift */,
 				CD816F971F916F28007A2A6D /* FTTextField.swift */,
-				CD73C52D1FA166C50032766C /* CosmosAccessibility.swift */,
 			);
-			path = Utils;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		CDE0D66E20B72F1700CE3814 /* Login */ = {
@@ -303,9 +308,26 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-FTTracker/Pods-FTTracker-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Cosmos/Cosmos.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleAPIClientForREST/GoogleAPIClientForREST.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cosmos.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleAPIClientForREST.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -336,9 +358,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-FTTracker/Pods-FTTracker-resources.sh",
+				"${PODS_ROOT}/FirebaseInvites/Resources/GINInviteResources.bundle",
+				"${PODS_ROOT}/FirebaseInvites/Resources/GPPACLPickerResources.bundle",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GINInviteResources.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GPPACLPickerResources.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -400,7 +429,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD73C52E1FA166C50032766C /* CosmosAccessibility.swift in Sources */,
 				CD73C52A1F9C27710032766C /* FoodTruckAnnotation.swift in Sources */,
 				CD73C5261F984C5D0032766C /* TruckController.swift in Sources */,
 				CD816F981F916F28007A2A6D /* FTTextField.swift in Sources */,

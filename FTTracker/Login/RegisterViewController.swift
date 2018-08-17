@@ -97,18 +97,25 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
     
     func createNewUser(withEmail email: String, andPassword password: String, andName name: String) {
         print("email: \(email), password: \(password), name: \(name)")
-        FIRAuth.auth()?.createUser(withEmail: email, password: password, completion:  { (user, error) in
+        
+        
+        
+        Auth.auth().createUser(withEmail: email, password: password, completion:  { (user, error) in
             if error != nil {
                 print(error!)
                 // TO DO: Throw signup error
             } else {
-               UserDefaults.standard.set(user!.uid, forKey: "uid")
+                
+                
+                
+                
+                UserDefaults.standard.set(user?.user.uid ?? "", forKey: "uid")
                 self.uploadProfilePicture()
-                let ref = FIRDatabase.database().reference()
+                let ref = Database.database().reference()
                 switch self.userType {
                 case .Customer:
-                    let customerDict: [String : Any?] = ["name" : name, "email" : email, "password" : password, "joinedDate": Date().timeIntervalSince1970, "uid" : UserDefaults.standard.value(forKey: "uid")]
-                    ref.child("Customers").setValue([user!.uid : customerDict])
+                    let customerDict: [String : Any] = ["name" : name, "email" : email, "password" : password, "joinedDate": Date().timeIntervalSince1970, "uid" : UserDefaults.standard.value(forKey: "uid")]
+                    ref.child("Customers").setValue([user?.user.uid ?? "" : customerDict])
                     
                 case .FoodTruck:
                     let phone = self.phoneTextField.text ?? ""
@@ -117,7 +124,7 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
                     let description = self.descriptionTextView.text ?? ""
                     guard let uid = UserDefaults.standard.value(forKey: "uid") else { return }
                     let foodTruckDict: [String : Any] = ["name" : name, "email" : email, "password" : password, "phone" : phone, "rating" : 0, "twitter" : twitter, "category" : category, "description" : description, "joinedDate" : Date().timeIntervalSince1970, "uid" : uid ]
-                    ref.child("FoodTrucks").setValue([user!.uid : foodTruckDict])
+                    ref.child("FoodTrucks").setValue([user?.user.uid ?? "": foodTruckDict])
                     break
                 default:
                     break
