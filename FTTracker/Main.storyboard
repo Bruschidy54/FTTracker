@@ -41,13 +41,13 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="359" height="30"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F3x-a8-8Zu">
-                                                            <rect key="frame" x="0.0" y="0.0" width="74" height="30"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="80" height="30"/>
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                             <color key="textColor" red="0.2901960784" green="0.56470588239999997" blue="0.8862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="j8K-z4-Zkt" customClass="FTTextField" customModule="FTTracker">
-                                                            <rect key="frame" x="94" y="0.0" width="265" height="30"/>
+                                                            <rect key="frame" x="100" y="0.0" width="259" height="30"/>
                                                             <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="30" id="nqB-VL-kme"/>
@@ -62,13 +62,13 @@
                                                     <rect key="frame" x="0.0" y="40" width="359" height="30"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vp5-bS-2bV">
-                                                            <rect key="frame" x="0.0" y="0.0" width="74" height="30"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="80" height="30"/>
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                             <color key="textColor" red="0.2901960784" green="0.56470588239999997" blue="0.8862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Tk-6A-qMj" customClass="FTTextField" customModule="FTTracker">
-                                                            <rect key="frame" x="94" y="0.0" width="265" height="30"/>
+                                                            <rect key="frame" x="100" y="0.0" width="259" height="30"/>
                                                             <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="30" id="IaQ-i0-sLj"/>
@@ -87,7 +87,7 @@
                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="rOa-mY-uko">
                                             <rect key="frame" x="27.5" y="513" width="320" height="50"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iC6-n1-48g" customClass="CurvedButton" customModule="FTTracker">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iC6-n1-48g" customClass="CurvedButton" customModule="FTTracker" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="100" height="50"/>
                                                     <color key="backgroundColor" red="0.29019607843137252" green="0.56470588235294117" blue="0.88627450980392153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
@@ -101,7 +101,7 @@
                                                         <action selector="onLogInButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ajm-w4-dmQ"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MDt-Sm-Ck7" customClass="CurvedButton" customModule="FTTracker">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MDt-Sm-Ck7" customClass="CurvedButton" customModule="FTTracker" customModuleProvider="target">
                                                     <rect key="frame" x="110" y="0.0" width="100" height="50"/>
                                                     <color key="backgroundColor" red="0.80000000000000004" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <state key="normal" title="Register">
@@ -111,7 +111,7 @@
                                                         <action selector="onRegisterButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0Wo-jb-LEw"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e6R-gY-3EG" customClass="CurvedButton" customModule="FTTracker">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e6R-gY-3EG" customClass="CurvedButton" customModule="FTTracker" customModuleProvider="target">
                                                     <rect key="frame" x="220" y="0.0" width="100" height="50"/>
                                                     <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                                     <state key="normal" title="Guest">
@@ -185,16 +185,16 @@
                                 </connections>
                             </searchBar>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="bBJ-YG-Nxw">
-                                <rect key="frame" x="0.0" y="94" width="375" height="274"/>
+                                <rect key="frame" x="0.0" y="94" width="375" height="524"/>
                                 <connections>
                                     <outlet property="delegate" destination="IxX-hM-LPA" id="0oR-gz-BnQ"/>
                                 </connections>
                             </mapView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Etu-7a-DHd">
-                                <rect key="frame" x="0.0" y="368" width="375" height="250"/>
+                                <rect key="frame" x="0.0" y="484" width="375" height="134"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="250" id="NVE-3L-CYz"/>
+                                    <constraint firstAttribute="height" constant="134" id="NVE-3L-CYz"/>
                                 </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TruckCell" rowHeight="127" id="6fS-07-xha" customClass="FoodTruckTableViewCell" customModule="FTTracker" customModuleProvider="target">
@@ -211,13 +211,13 @@
                                                         <constraint firstAttribute="height" constant="70" id="j2A-mT-8aB"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4gQ-c7-S05">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4gQ-c7-S05">
                                                     <rect key="frame" x="86" y="19" width="220" height="19"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gPf-1N-4xe">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gPf-1N-4xe">
                                                     <rect key="frame" x="214" y="42" width="38" height="18"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="18" id="dOg-bZ-fhy"/>
@@ -226,7 +226,7 @@
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hhp-ic-rFJ">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hhp-ic-rFJ">
                                                     <rect key="frame" x="86" y="68" width="37.5" height="18"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="18" id="Aq3-qn-pV0"/>
@@ -235,13 +235,13 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gmh-eH-N3Z">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gmh-eH-N3Z">
                                                     <rect key="frame" x="86" y="94" width="37.5" height="14"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LQg-dG-9P3" customClass="CosmosView" customModule="FTTracker" customModuleProvider="target">
+                                                <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LQg-dG-9P3" customClass="CosmosView" customModule="Cosmos">
                                                     <rect key="frame" x="86" y="43" width="120" height="15"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </view>
@@ -259,7 +259,7 @@
                                                 <constraint firstItem="Hhp-ic-rFJ" firstAttribute="leading" secondItem="4gQ-c7-S05" secondAttribute="leading" id="DsI-Wk-HMh"/>
                                                 <constraint firstItem="Hhp-ic-rFJ" firstAttribute="leading" secondItem="Dt6-5D-vGx" secondAttribute="trailing" constant="8" id="DwK-XI-M0X"/>
                                                 <constraint firstItem="Avm-GZ-LJ4" firstAttribute="leading" secondItem="4gQ-c7-S05" secondAttribute="trailing" constant="8" id="GXb-eU-UT6"/>
-                                                <constraint firstAttribute="trailing" secondItem="gPf-1N-4xe" secondAttribute="trailing" constant="123" id="NaR-lh-zIy"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="gPf-1N-4xe" secondAttribute="trailing" constant="8" id="NaR-lh-zIy"/>
                                                 <constraint firstItem="Dt6-5D-vGx" firstAttribute="leading" secondItem="0cE-2G-udg" secondAttribute="leading" constant="8" id="OIP-MW-9bJ"/>
                                                 <constraint firstItem="Hhp-ic-rFJ" firstAttribute="top" secondItem="LQg-dG-9P3" secondAttribute="bottom" constant="10" id="So6-XM-0aW"/>
                                                 <constraint firstItem="Avm-GZ-LJ4" firstAttribute="top" secondItem="0cE-2G-udg" secondAttribute="topMargin" constant="8" id="T7Z-uX-7H4"/>
@@ -301,8 +301,9 @@
                             <constraint firstItem="uKB-tT-zgY" firstAttribute="trailing" secondItem="ZXe-qj-s7l" secondAttribute="trailing" id="5nA-qh-C81"/>
                             <constraint firstItem="Etu-7a-DHd" firstAttribute="leading" secondItem="ZXe-qj-s7l" secondAttribute="leading" id="6Bu-p7-uQ7"/>
                             <constraint firstItem="bBJ-YG-Nxw" firstAttribute="top" secondItem="uKB-tT-zgY" secondAttribute="bottom" id="BnV-VQ-Ewg"/>
-                            <constraint firstItem="Etu-7a-DHd" firstAttribute="top" secondItem="bBJ-YG-Nxw" secondAttribute="bottom" id="GIL-KM-f3F"/>
+                            <constraint firstItem="bBJ-YG-Nxw" firstAttribute="bottom" secondItem="ZXe-qj-s7l" secondAttribute="bottom" id="G5s-bF-Ipj"/>
                             <constraint firstItem="bBJ-YG-Nxw" firstAttribute="centerX" secondItem="0EV-KL-UMo" secondAttribute="centerX" id="UYU-2p-4u3"/>
+                            <constraint firstItem="Etu-7a-DHd" firstAttribute="top" relation="greaterThanOrEqual" secondItem="uKB-tT-zgY" secondAttribute="bottom" id="bHh-B1-aQn"/>
                             <constraint firstItem="bBJ-YG-Nxw" firstAttribute="trailing" secondItem="ZXe-qj-s7l" secondAttribute="trailing" id="bnV-4s-kbF"/>
                             <constraint firstItem="ZXe-qj-s7l" firstAttribute="bottom" secondItem="Etu-7a-DHd" secondAttribute="bottom" id="dbn-ez-dAt"/>
                             <constraint firstItem="ZXe-qj-s7l" firstAttribute="trailing" secondItem="Etu-7a-DHd" secondAttribute="trailing" id="gUF-FA-Y8h"/>
@@ -318,6 +319,7 @@
                         <outlet property="searchBar" destination="uKB-tT-zgY" id="Tc4-AM-qyJ"/>
                         <outlet property="tableHeight" destination="NVE-3L-CYz" id="wTB-GZ-yw2"/>
                         <outlet property="tableView" destination="Etu-7a-DHd" id="bXv-7V-p2r"/>
+                        <outlet property="tableViewBottomConstraint" destination="dbn-ez-dAt" id="JOg-oO-lh7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E1i-dt-AYX" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -591,7 +593,7 @@
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="dg0-iJ-81b"/>
                                                 </constraints>
                                             </imageView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rip-iT-w6G" customClass="CurvedButton" customModule="FTTracker">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rip-iT-w6G" customClass="CurvedButton" customModule="FTTracker" customModuleProvider="target">
                                                 <rect key="frame" x="50" y="230" width="100" height="50"/>
                                                 <color key="backgroundColor" red="0.80000000000000004" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>

@@ -24,6 +24,7 @@ class FoodTruck {
     var joinedDate: Double
     var address: String?
     var distance: Double = 0
+    var imageUrl: String?
     
     
 //    var coupon: Coupon?
@@ -47,5 +48,9 @@ class FoodTruck {
         }
         self.joinedDate = dict["joinedDate"] as! Double
         self.address = dict["address"] as? String
+    }
+    
+    func printDescription() {
+        print(self.name)
     }
 }

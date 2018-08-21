@@ -9,12 +9,15 @@
 /* Begin PBXBuildFile section */
 		0A06EE85249910CD5B029BCF /* Pods_FTTrackerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A78B1570474DF98ED8B49C1 /* Pods_FTTrackerTests.framework */; };
 		1F5D4C1E981949BFD72EF9DC /* Pods_FTTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB45CD792D027A95B86D581 /* Pods_FTTracker.framework */; };
+		CD638D252129F845006EB2B7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CD638D232129F7CD006EB2B7 /* GoogleService-Info.plist */; };
+		CD638D262129F897006EB2B7 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = CD638D232129F7CD006EB2B7 /* GoogleService-Info.plist */; };
+		CD638D28212A5D7F006EB2B7 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD638D27212A5D7F006EB2B7 /* FirebaseService.swift */; };
+		CD638D2C212B5706006EB2B7 /* UIColor+theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD638D2B212B5706006EB2B7 /* UIColor+theme.swift */; };
 		CD6612DF1F9539AC00966A11 /* UserType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6612DE1F9539AC00966A11 /* UserType.swift */; };
 		CD73C5261F984C5D0032766C /* TruckController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD73C5251F984C5D0032766C /* TruckController.swift */; };
 		CD73C5281F9AA65A0032766C /* FoodTruck.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD73C5271F9AA65A0032766C /* FoodTruck.swift */; };
 		CD73C52A1F9C27710032766C /* FoodTruckAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD73C5291F9C27710032766C /* FoodTruckAnnotation.swift */; };
 		CD73C52C1FA15D610032766C /* FoodTruckTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD73C52B1FA15D610032766C /* FoodTruckTableViewCell.swift */; };
-		CD816F901F90596E007A2A6D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CD816F8D1F90592B007A2A6D /* GoogleService-Info.plist */; };
 		CD816F921F905AF9007A2A6D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDAD29FD1F90066100DD0573 /* Main.storyboard */; };
 		CD816F941F906937007A2A6D /* CurvedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD816F931F906937007A2A6D /* CurvedButton.swift */; };
 		CD816F961F916A05007A2A6D /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD816F951F916A05007A2A6D /* RegisterViewController.swift */; };
@@ -44,12 +47,14 @@
 		35FB39B76B19C550B475F086 /* Pods-FTTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FTTracker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FTTracker/Pods-FTTracker.debug.xcconfig"; sourceTree = "<group>"; };
 		B545E05C44DAC68580DF7F63 /* Pods-FTTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FTTracker.release.xcconfig"; path = "Pods/Target Support Files/Pods-FTTracker/Pods-FTTracker.release.xcconfig"; sourceTree = "<group>"; };
 		C54B7310AA5D19941043EC5E /* Pods-FTTrackerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FTTrackerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FTTrackerTests/Pods-FTTrackerTests.debug.xcconfig"; sourceTree = "<group>"; };
+		CD638D232129F7CD006EB2B7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		CD638D27212A5D7F006EB2B7 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
+		CD638D2B212B5706006EB2B7 /* UIColor+theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+theme.swift"; sourceTree = "<group>"; };
 		CD6612DE1F9539AC00966A11 /* UserType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserType.swift; sourceTree = "<group>"; };
 		CD73C5251F984C5D0032766C /* TruckController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TruckController.swift; sourceTree = "<group>"; };
 		CD73C5271F9AA65A0032766C /* FoodTruck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodTruck.swift; sourceTree = "<group>"; };
 		CD73C5291F9C27710032766C /* FoodTruckAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodTruckAnnotation.swift; sourceTree = "<group>"; };
 		CD73C52B1FA15D610032766C /* FoodTruckTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodTruckTableViewCell.swift; sourceTree = "<group>"; };
-		CD816F8D1F90592B007A2A6D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CD816F931F906937007A2A6D /* CurvedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurvedButton.swift; sourceTree = "<group>"; };
 		CD816F951F916A05007A2A6D /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		CD816F971F916F28007A2A6D /* FTTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTTextField.swift; sourceTree = "<group>"; };
@@ -110,6 +115,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		CD638D29212B56D0006EB2B7 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				CD638D27212A5D7F006EB2B7 /* FirebaseService.swift */,
+				CD638D2B212B5706006EB2B7 /* UIColor+theme.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		CD91D1DA20C8A43C002F1E25 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -142,16 +156,17 @@
 		CD9881821F90061000661E4E /* FTTracker */ = {
 			isa = PBXGroup;
 			children = (
+				CD638D29212B56D0006EB2B7 /* Utils */,
 				CD91D1DA20C8A43C002F1E25 /* Models */,
 				CDE0D66F20B7336F00CE3814 /* Trucks */,
 				CDE0D66E20B72F1700CE3814 /* Login */,
 				CDE0D66D20B6318C00CE3814 /* Views */,
-				CD816F8D1F90592B007A2A6D /* GoogleService-Info.plist */,
 				CD9881831F90061000661E4E /* AppDelegate.swift */,
 				CDAD29FD1F90066100DD0573 /* Main.storyboard */,
+				CD98818F1F90061000661E4E /* Info.plist */,
+				CD638D232129F7CD006EB2B7 /* GoogleService-Info.plist */,
 				CD98818A1F90061000661E4E /* Assets.xcassets */,
 				CD98818C1F90061000661E4E /* LaunchScreen.storyboard */,
-				CD98818F1F90061000661E4E /* Info.plist */,
 			);
 			path = FTTracker;
 			sourceTree = "<group>";
@@ -170,6 +185,7 @@
 			children = (
 				CD816F931F906937007A2A6D /* CurvedButton.swift */,
 				CD816F991F916F49007A2A6D /* FTTextView.swift */,
+				CD73C52B1FA15D610032766C /* FoodTruckTableViewCell.swift */,
 				CD816F971F916F28007A2A6D /* FTTextField.swift */,
 			);
 			path = Views;
@@ -190,7 +206,6 @@
 				CD73C5251F984C5D0032766C /* TruckController.swift */,
 				CDE0D67020B7353200CE3814 /* TruckController+UISearchBarDelegate.swift */,
 				CDE0D67220B7358B00CE3814 /* TruckController+UITableViewDelegate.swift */,
-				CD73C52B1FA15D610032766C /* FoodTruckTableViewCell.swift */,
 				CD73C5291F9C27710032766C /* FoodTruckAnnotation.swift */,
 			);
 			path = Trucks;
@@ -286,7 +301,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD98818E1F90061000661E4E /* LaunchScreen.storyboard in Resources */,
-				CD816F901F90596E007A2A6D /* GoogleService-Info.plist in Resources */,
+				CD638D252129F845006EB2B7 /* GoogleService-Info.plist in Resources */,
 				CD98818B1F90061000661E4E /* Assets.xcassets in Resources */,
 				CD816F921F905AF9007A2A6D /* Main.storyboard in Resources */,
 			);
@@ -310,22 +325,18 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-FTTracker/Pods-FTTracker-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Cosmos/Cosmos.framework",
-				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleAPIClientForREST/GoogleAPIClientForREST.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
-				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cosmos.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleAPIClientForREST.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -429,6 +440,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD638D262129F897006EB2B7 /* GoogleService-Info.plist in Sources */,
+				CD638D28212A5D7F006EB2B7 /* FirebaseService.swift in Sources */,
 				CD73C52A1F9C27710032766C /* FoodTruckAnnotation.swift in Sources */,
 				CD73C5261F984C5D0032766C /* TruckController.swift in Sources */,
 				CD816F981F916F28007A2A6D /* FTTextField.swift in Sources */,
@@ -436,6 +449,7 @@
 				CD6612DF1F9539AC00966A11 /* UserType.swift in Sources */,
 				CDE0D67320B7358B00CE3814 /* TruckController+UITableViewDelegate.swift in Sources */,
 				CD816F941F906937007A2A6D /* CurvedButton.swift in Sources */,
+				CD638D2C212B5706006EB2B7 /* UIColor+theme.swift in Sources */,
 				CD73C5281F9AA65A0032766C /* FoodTruck.swift in Sources */,
 				CD816F9A1F916F49007A2A6D /* FTTextView.swift in Sources */,
 				CD9881841F90061000661E4E /* AppDelegate.swift in Sources */,

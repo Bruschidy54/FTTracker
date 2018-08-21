@@ -12,7 +12,11 @@ import Photos
 
 class RegisterViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UITextViewDelegate {
     
-    @IBOutlet var customerFTSegmentedControl: UISegmentedControl!
+    @IBOutlet var customerFTSegmentedControl: UISegmentedControl! {
+        didSet {
+            customerFTSegmentedControl.tintColor = .themeBlue
+        }
+    }
     @IBOutlet var topStackViewWidthConstraint: NSLayoutConstraint!
     @IBOutlet var nameTextField: FTTextField!
     @IBOutlet var uploadImageView: UIImageView!
@@ -148,34 +152,15 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
     func formatForms() {
         switch userType {
         case .Customer:
-            UIView.animate(withDuration: 0.3 , animations: {
-                self.twitterLabel.alpha = 0
-                self.twitterTextField.alpha = 0
-                self.categoryLabel.alpha = 0
-                self.categoryTextField.alpha = 0
-                self.descriptionLabel.alpha = 0
-                self.descriptionTextView.alpha = 0
-                self.phoneLabel.alpha = 0
-                self.phoneTextField.alpha = 0
-            }) { (finished) in
-            self.twitterLabel.isHidden = finished
-            self.twitterTextField.isHidden = finished
-            self.categoryLabel.isHidden = finished
-            self.categoryTextField.isHidden = finished
-            self.descriptionLabel.isHidden = finished
-            self.descriptionTextView.isHidden = finished
-            self.phoneLabel.isHidden = finished
-            self.phoneTextField.isHidden = finished
-            }
+            self.twitterLabel.isHidden = true
+            self.twitterTextField.isHidden = true
+            self.categoryLabel.isHidden = true
+            self.categoryTextField.isHidden = true
+            self.descriptionLabel.isHidden = true
+            self.descriptionTextView.isHidden = true
+            self.phoneLabel.isHidden = true
+            self.phoneTextField.isHidden = true
         case .FoodTruck:
-            twitterLabel.alpha = 0
-            twitterTextField.alpha = 0
-            categoryLabel.alpha = 0
-            categoryTextField.alpha = 0
-            descriptionLabel.alpha = 0
-            descriptionTextView.alpha = 0
-            phoneLabel.alpha = 0
-            phoneTextField.alpha = 0
             twitterLabel.isHidden = false
             twitterTextField.isHidden = false
             categoryLabel.isHidden = false
@@ -184,20 +169,14 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
             descriptionTextView.isHidden = false
             phoneLabel.isHidden = false
             phoneTextField.isHidden = false
-            UIView.animate(withDuration: 0.3) {
-                self.twitterLabel.alpha = 1
-                self.twitterTextField.alpha = 1
-                self.categoryLabel.alpha = 1
-                self.categoryTextField.alpha = 1
-                self.descriptionLabel.alpha = 1
-                self.descriptionTextView.alpha = 1
-                self.phoneLabel.alpha = 1
-                self.phoneTextField.alpha = 1
-            }
 
         default:
             break
         }
+        
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            self.view.layoutIfNeeded()
+        })
     }
 
     func createAlertController(withTitle title: String, andMessage message: String) {

@@ -18,6 +18,7 @@ class TruckController: UIViewController, CLLocationManagerDelegate, MKMapViewDel
     @IBOutlet var tableView: UITableView!
 
     @IBOutlet var tableHeight: NSLayoutConstraint!
+    @IBOutlet weak var tableViewBottomConstraint: NSLayoutConstraint!
     
     var foodTrucks = [FoodTruck]()
     var filteredFoodTrucks = [FoodTruck]()
@@ -40,20 +41,22 @@ class TruckController: UIViewController, CLLocationManagerDelegate, MKMapViewDel
         super.viewDidLoad()
         
         mapView.showsUserLocation = true
-        
         mapView.delegate = self
         
+        self.tabBarController?.title = "Find Trucks"
         
-        setupTapGestureRecognizers()
+        setupGestureRecognizers()
         setupLocationManager() 
         setupNavigationBar()
         
         
+        // Change to negative
         
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 120
+        tableViewBottomConstraint.constant = -1 * view.frame.height
+        tableHeight.constant = view.frame.height + 134
         
     }
+    
     
     private func setupLocationManager() {
         locationManager.delegate = self
@@ -65,16 +68,19 @@ class TruckController: UIViewController, CLLocationManagerDelegate, MKMapViewDel
         }
     }
     
-    private func setupTapGestureRecognizers() {
+    private func setupGestureRecognizers() {
         let tableTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTableTap))
         tableView.addGestureRecognizer(tableTapGestureRecognizer)
         
-        let mapTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleMapTap))
-        mapView.addGestureRecognizer(mapTapGestureRecognizer)
+        let tablePanGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handleTablePan))
+        tableView.addGestureRecognizer(tablePanGestureRecognizer)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.tabBarController?.navigationItem.hidesBackButton = true
+
+        
         tableView.reloadData()
     }
     
@@ -212,41 +218,34 @@ class TruckController: UIViewController, CLLocationManagerDelegate, MKMapViewDel
     
     func queryFoodTrucks() {
         
-        
-        let ref = Database.database().reference()
-        let foodTruckRef = ref.child("FoodTrucks")
-        
-        foodTruckRef.observe(.value, with: { snapshot in
-            print(snapshot.childrenCount)
-            let enumerator = snapshot.children
-            while let rest = enumerator.nextObject() as? DataSnapshot {
-                let foodTruckDict = rest.value as! [String:Any]
-                let foodTruck = FoodTruck.init(dict: foodTruckDict)
-                print("created food truck: \(foodTruck.uid)")
-                if let latitude = foodTruck.latitude, let longitude = foodTruck.longitude {
-                    if self.currentLocation != nil {
-                        foodTruck.distance = self.currentLocation!.distance(from: CLLocation(latitude: latitude , longitude: longitude)) * 0.000621371
-                    } else {
-                        foodTruck.distance = 0
-                    }
-                    DispatchQueue.main.async() {
-                        self.dropPinForFoodTruck(foodTruck: foodTruck)
-                        print("Added annotation")
-                    }
-                    
+        FirebaseService.shared.queryFoodTrucks { (foodTrucks) in
+            for foodTruck in foodTrucks {
+                
+            if let latitude = foodTruck.latitude, let longitude = foodTruck.longitude {
+                if self.currentLocation != nil {
+                    foodTruck.distance = self.currentLocation!.distance(from: CLLocation(latitude: latitude , longitude: longitude)) * 0.000621371
+                } else {
+                    foodTruck.distance = 0
                 }
+                }
+                
                 self.foodTrucks.append(foodTruck)
-                self.tableView.reloadData()
-            }
-            // sort here instead?
-        })
-        self.foodTrucks.sort(by: { $0.distance < $1.distance })
-        tableView.reloadData()
+                
+                DispatchQueue.main.async() {
+                    self.dropPinForFoodTruck(foodTruck: foodTruck)
+                    print("Added annotation")
+                }
+        }
+            
+            self.tableView.reloadData()
+            
+        }
     }
     
     func zoomCenter() {
         let userLocation = mapView.userLocation
-        let region = MKCoordinateRegionMakeWithDistance(userLocation.location!.coordinate, 10000, 10000)
+        guard let locationCoordinate = userLocation.location?.coordinate else { return }
+        let region = MKCoordinateRegionMakeWithDistance(locationCoordinate, 10000, 10000)
         mapView.setRegion(region, animated: true)
     }
     
@@ -260,16 +259,22 @@ class TruckController: UIViewController, CLLocationManagerDelegate, MKMapViewDel
         //        let geoCoder = CLGeocoder()
         //        geoCoder.geocodeAddressString(foodTruck.address) { (placemarks : [CLPlacemark]?, error : NSError?) in
         //            for placemark in placemarks! {
+        
+        guard let latitude = foodTruck.latitude, let longitude = foodTruck.longitude else { return }
+        
         let annotation = FoodTruckAnnotation()
         let radius = CLLocationDistance(200.0)
-        annotation.coordinate = CLLocationCoordinate2D(latitude: foodTruck.latitude!, longitude: foodTruck.longitude!)
-        annotation.title = foodTruck.name
+        annotation.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        annotation.title = foodTruck.name // TO DO: Move to Annotation Subclass
         if let departure = foodTruck.departureTime {
             let departureString = dateFormatter.string(from: departure)
             annotation.subtitle = "Departing \(departureString)"
         }
+        // until here
         annotation.foodTruck = foodTruck
         let geoRegion = CLCircularRegion(center: annotation.coordinate, radius: radius, identifier: foodTruck.uid)
+        
+        // TO DO: only make geofences visible to FoodTruck users
         self.geofences.append(geoRegion)
         self.locationManager.startMonitoring(for: geoRegion)
         let overlay = MKCircle.init(center: annotation.coordinate, radius: radius)
@@ -278,26 +283,58 @@ class TruckController: UIViewController, CLLocationManagerDelegate, MKMapViewDel
         
     }
     
-
-    @objc func handleMapTap() {
-        tableHeight.constant = 100
+    
+    fileprivate func handlePanChanged(_ gesture: UIPanGestureRecognizer) {
+        let translation = gesture.translation(in: tableView.superview)
+        tableView.transform = CGAffineTransform(translationX: 0, y: translation.y)
         
-        UIView.animate(withDuration: 0.5, delay: 0.1, options: .curveEaseOut, animations: {
-            self.view.layoutIfNeeded()
-        }, completion: nil)
+        
+    }
+    
+    fileprivate func handlePanEnded(_ gesture: UIPanGestureRecognizer) {
+        let translation = gesture.translation(in: tableView.superview)
+        let velocity = gesture.velocity(in: tableView.superview)
+        
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            self.tableView.transform = .identity
+            
+            if translation.y < -200 || velocity.y < -500 {
+                self.maximizeTableView()
+            } else {
+                self.minimizeTableView()
+            }
+        })
+    }
+
+    @objc func handleTablePan(gesture: UIPanGestureRecognizer) {
+        if gesture.state == .changed {
+            handlePanChanged(gesture)
+        } else if gesture.state == .ended {
+            handlePanEnded(gesture)
+        }
     }
     
     @objc func handleTableTap() {
-        tableHeight.constant = 400
-        
-        UIView.animate(withDuration: 0.5, delay: 0.1, options: .curveEaseOut, animations: {
-            self.view.layoutIfNeeded()
-        }, completion: nil)
-        
-        
+        maximizeTableView()
     }
     
-    func addSampleFoodTrucks() {
+    func maximizeTableView() {
+        tableHeight.constant = 2 * view.frame.height
+        tableViewBottomConstraint.constant = -1 * view.frame.height
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            self.view.layoutIfNeeded()
+        })
+    }
+    
+    func minimizeTableView() {
+        tableHeight.constant = view.frame.height + 134
+        tableViewBottomConstraint.constant = -1 * view.frame.height
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            self.view.layoutIfNeeded()
+        })
+    }
+    
+    private func addSampleFoodTrucks() {
         
         let foodTruckOneDict = ["name" : "Dan's" , "email" : "dan", "password" : "danley", "uid" : "123", "rating" : 0.0 , "description" : "We suck", "category" : "donuts", "twitter" : "dan", "latitude" : 41.9, "longitude" : -87.64, "departureTime" : 0.0, "joinedDate" : 0.0, "address" : "123 High Street"] as [String : Any]
         let foodTruckOne = FoodTruck.init(dict: foodTruckOneDict)
@@ -325,56 +362,8 @@ class TruckController: UIViewController, CLLocationManagerDelegate, MKMapViewDel
         foodTrucks.forEach { (foodTruck) in
             dropPinForFoodTruck(foodTruck: foodTruck)
         }
+       
         tableView.reloadData()
-    }
-    
-    func getAddressFromGeocodeCoordinate(location: CLLocation, cell: FoodTruckTableViewCell) {
-        let geocoder = CLGeocoder()
-        
-        geocoder.reverseGeocodeLocation(location, completionHandler:
-            {(placemarks, error) in
-                if (error != nil)
-                {
-                    print("reverse geodcode fail: \(error!.localizedDescription)")
-                }
-                let pm = placemarks! as [CLPlacemark]
-                
-                if pm.count > 0 {
-                    let pm = placemarks![0]
-
-                    var addressString : String = ""
-                    if pm.subLocality != nil {
-                        addressString = addressString + pm.subLocality! + ", "
-                    }
-                    if pm.thoroughfare != nil {
-                        addressString = addressString + pm.thoroughfare! + ", "
-                    }
-                    if pm.locality != nil {
-                        addressString = addressString + pm.locality! + ", "
-                    }
-                    if pm.country != nil {
-                        addressString = addressString + pm.country! + ", "
-                    }
-                    if pm.postalCode != nil {
-                        addressString = addressString + pm.postalCode! + " "
-                    }
-                    
-                    
-                     cell.addressLabel.text = addressString
-                }
-        })
-    }
-    
-    func conversion(post: String) -> UIImage {
-        if post == "" {
-            return UIImage(named: "QuestionMarkImage")!
-        } else {
-            if let imageData = NSData(base64Encoded: post, options: [] ) {
-            let image = UIImage(data: imageData as Data)
-            return image!
-            }
-            return UIImage()
-        }
     }
     
     /*
