@@ -13,6 +13,7 @@
 		CD638D262129F897006EB2B7 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = CD638D232129F7CD006EB2B7 /* GoogleService-Info.plist */; };
 		CD638D28212A5D7F006EB2B7 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD638D27212A5D7F006EB2B7 /* FirebaseService.swift */; };
 		CD638D2C212B5706006EB2B7 /* UIColor+theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD638D2B212B5706006EB2B7 /* UIColor+theme.swift */; };
+		CD638D2E212D0D30006EB2B7 /* TruckDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD638D2D212D0D30006EB2B7 /* TruckDetailController.swift */; };
 		CD6612DF1F9539AC00966A11 /* UserType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6612DE1F9539AC00966A11 /* UserType.swift */; };
 		CD73C5261F984C5D0032766C /* TruckController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD73C5251F984C5D0032766C /* TruckController.swift */; };
 		CD73C5281F9AA65A0032766C /* FoodTruck.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD73C5271F9AA65A0032766C /* FoodTruck.swift */; };
@@ -50,6 +51,7 @@
 		CD638D232129F7CD006EB2B7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CD638D27212A5D7F006EB2B7 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
 		CD638D2B212B5706006EB2B7 /* UIColor+theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+theme.swift"; sourceTree = "<group>"; };
+		CD638D2D212D0D30006EB2B7 /* TruckDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TruckDetailController.swift; sourceTree = "<group>"; };
 		CD6612DE1F9539AC00966A11 /* UserType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserType.swift; sourceTree = "<group>"; };
 		CD73C5251F984C5D0032766C /* TruckController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TruckController.swift; sourceTree = "<group>"; };
 		CD73C5271F9AA65A0032766C /* FoodTruck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodTruck.swift; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 				CDE0D67020B7353200CE3814 /* TruckController+UISearchBarDelegate.swift */,
 				CDE0D67220B7358B00CE3814 /* TruckController+UITableViewDelegate.swift */,
 				CD73C5291F9C27710032766C /* FoodTruckAnnotation.swift */,
+				CD638D2D212D0D30006EB2B7 /* TruckDetailController.swift */,
 			);
 			path = Trucks;
 			sourceTree = "<group>";
@@ -453,6 +456,7 @@
 				CD73C5281F9AA65A0032766C /* FoodTruck.swift in Sources */,
 				CD816F9A1F916F49007A2A6D /* FTTextView.swift in Sources */,
 				CD9881841F90061000661E4E /* AppDelegate.swift in Sources */,
+				CD638D2E212D0D30006EB2B7 /* TruckDetailController.swift in Sources */,
 				CDE0D67120B7353200CE3814 /* TruckController+UISearchBarDelegate.swift in Sources */,
 				CD73C52C1FA15D610032766C /* FoodTruckTableViewCell.swift in Sources */,
 				CD816F961F916A05007A2A6D /* RegisterViewController.swift in Sources */,

@@ -13,12 +13,14 @@ import Firebase
 
 class TruckController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     
-    @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var mapView: MKMapView!
     @IBOutlet var tableView: UITableView!
 
     @IBOutlet var tableHeight: NSLayoutConstraint!
     @IBOutlet weak var tableViewBottomConstraint: NSLayoutConstraint!
+    
+    
+    let searchController = UISearchController(searchResultsController: nil)
     
     var foodTrucks = [FoodTruck]()
     var filteredFoodTrucks = [FoodTruck]()
@@ -48,13 +50,46 @@ class TruckController: UIViewController, CLLocationManagerDelegate, MKMapViewDel
         setupGestureRecognizers()
         setupLocationManager() 
         setupNavigationBar()
+        setupSearchBar()
         
         
-        // Change to negative
+        // To DO: reload tableview data on searchController cancel button tapped
+        
+        
         
         tableViewBottomConstraint.constant = -1 * view.frame.height
         tableHeight.constant = view.frame.height + 134
         
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        filteredFoodTrucks.removeAll()
+        self.tabBarController?.navigationItem.searchController?.searchBar.text = ""
+        searchActive = false
+       self.tabBarController?.navigationItem.searchController?.searchBar.resignFirstResponder()
+    }
+    
+    //MARK:- Setup Methods
+    
+    private func setupSearchBar() {
+        
+        if #available(iOS 11.0, *) {
+            
+            self.tabBarController?.navigationItem.searchController = searchController
+        } else {
+            // Fallback on earlier versions
+            self.tabBarController?.navigationItem.titleView = searchController.searchBar
+            self.tabBarController?.navigationItem.titleView?.layoutSubviews()
+        }
+        
+        self.definesPresentationContext = true
+        self.tabBarController?.navigationItem.hidesSearchBarWhenScrolling = false
+        searchController.searchBar.placeholder = "Search for trucks..."
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSAttributedStringKey.foregroundColor.rawValue: UIColor.white]
+        searchController.searchBar.tintColor = .themeRed
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchBar.delegate = self
+    
     }
     
     
@@ -70,6 +105,7 @@ class TruckController: UIViewController, CLLocationManagerDelegate, MKMapViewDel
     
     private func setupGestureRecognizers() {
         let tableTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTableTap))
+        tableTapGestureRecognizer.cancelsTouchesInView = false
         tableView.addGestureRecognizer(tableTapGestureRecognizer)
         
         let tablePanGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handleTablePan))
@@ -82,13 +118,6 @@ class TruckController: UIViewController, CLLocationManagerDelegate, MKMapViewDel
 
         
         tableView.reloadData()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        filteredFoodTrucks.removeAll()
-        searchBar.text = ""
-        searchActive = false
-        searchBar.resignFirstResponder()
     }
     
     private func setupNavigationBar() {
@@ -366,14 +395,12 @@ class TruckController: UIViewController, CLLocationManagerDelegate, MKMapViewDel
         tableView.reloadData()
     }
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "TruckDetailSegue" {
+            guard let cell = sender as? FoodTruckTableViewCell else { return }
+            let destination = segue.destination as! TruckDetailController
+            destination.foodTruck = cell.foodTruck
+        }
+    }
     
 }

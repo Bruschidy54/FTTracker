@@ -19,8 +19,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UINavigationBar.appearance().prefersLargeTitles = true
          UINavigationBar.appearance().isTranslucent = false
-        UINavigationBar.appearance().largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.themeBlue]
-
+        UINavigationBar.appearance().largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.themeRed]
+        
+        
+        
+        UITabBar.appearance().barTintColor = .themeBlue
+        UITabBar.appearance().tintColor = .themeRed
+        
         
         FirebaseApp.configure()
         

@@ -24,7 +24,6 @@ extension TruckController: UITableViewDelegate, UITableViewDataSource {
             var foodTruck: FoodTruck?
             if searchActive && filteredFoodTrucks.count > 0 {
                 foodTruck = filteredFoodTrucks[indexPath.row]
-                print(foodTruck?.name)
             } else if searchActive && filteredFoodTrucks.count == 0 {
                 foodTruck = nil
                 // TO DO: remove cells and write (similar to GTD style: "Your search did not match any entries. Try again."
@@ -44,4 +43,24 @@ extension TruckController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 134
     }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let label = UILabel()
+        label.text = "No Available Food Trucks"
+        label.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+        label.textAlignment = .center
+        label.textColor = .themeRed
+        return label
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return filteredFoodTrucks.isEmpty && searchActive || foodTrucks.isEmpty ? 134 : 0
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let cell = tableView.cellForRow(at: indexPath)
+        self.performSegue(withIdentifier: "TruckDetailSegue", sender: cell)
+    }
+    
 }
