@@ -24,7 +24,7 @@ class TruckController: UIViewController, CLLocationManagerDelegate, MKMapViewDel
     
     var foodTrucks = [FoodTruck]()
     var filteredFoodTrucks = [FoodTruck]()
-     var searchActive = false
+    var searchActive = false
     var geofences = [CLCircularRegion]()
     private var locationManager = CLLocationManager()
     private var currentLocation: CLLocation?
@@ -104,9 +104,6 @@ class TruckController: UIViewController, CLLocationManagerDelegate, MKMapViewDel
     }
     
     private func setupGestureRecognizers() {
-        let tableTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTableTap))
-        tableTapGestureRecognizer.cancelsTouchesInView = false
-        tableView.addGestureRecognizer(tableTapGestureRecognizer)
         
         let tablePanGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handleTablePan))
         tableView.addGestureRecognizer(tablePanGestureRecognizer)
@@ -274,7 +271,8 @@ class TruckController: UIViewController, CLLocationManagerDelegate, MKMapViewDel
     func zoomCenter() {
         let userLocation = mapView.userLocation
         guard let locationCoordinate = userLocation.location?.coordinate else { return }
-        let region = MKCoordinateRegionMakeWithDistance(locationCoordinate, 10000, 10000)
+        let centerLocation = CLLocationCoordinate2D(latitude: locationCoordinate.latitude.advanced(by: -0.02), longitude: locationCoordinate.longitude)
+        let region = MKCoordinateRegionMakeWithDistance(centerLocation, 10000, 10000)
         mapView.setRegion(region, animated: true)
     }
     
@@ -343,9 +341,6 @@ class TruckController: UIViewController, CLLocationManagerDelegate, MKMapViewDel
         }
     }
     
-    @objc func handleTableTap() {
-        maximizeTableView()
-    }
     
     func maximizeTableView() {
         tableHeight.constant = 2 * view.frame.height

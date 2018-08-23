@@ -29,6 +29,10 @@
 		CD98818E1F90061000661E4E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD98818C1F90061000661E4E /* LaunchScreen.storyboard */; };
 		CD9881991F90061100661E4E /* FTTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9881981F90061100661E4E /* FTTrackerTests.swift */; };
 		CDAD2A001F90088300DD0573 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAD29FF1F90088300DD0573 /* LoginViewController.swift */; };
+		CDDCE0AB212E15A6006C9CBF /* TruckDetailHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDDCE0AA212E15A6006C9CBF /* TruckDetailHeader.xib */; };
+		CDDCE0AD212E15B9006C9CBF /* TruckDetailHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDCE0AC212E15B9006C9CBF /* TruckDetailHeader.swift */; };
+		CDDCE0AF212E4FA2006C9CBF /* TruckDetailFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDDCE0AE212E4FA2006C9CBF /* TruckDetailFooter.xib */; };
+		CDDCE0B1212E4FAF006C9CBF /* TruckDetailFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDCE0B0212E4FAF006C9CBF /* TruckDetailFooter.swift */; };
 		CDE0D67120B7353200CE3814 /* TruckController+UISearchBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE0D67020B7353200CE3814 /* TruckController+UISearchBarDelegate.swift */; };
 		CDE0D67320B7358B00CE3814 /* TruckController+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE0D67220B7358B00CE3814 /* TruckController+UITableViewDelegate.swift */; };
 /* End PBXBuildFile section */
@@ -71,6 +75,10 @@
 		CD98819A1F90061100661E4E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CDAD29FD1F90066100DD0573 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		CDAD29FF1F90088300DD0573 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		CDDCE0AA212E15A6006C9CBF /* TruckDetailHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TruckDetailHeader.xib; sourceTree = "<group>"; };
+		CDDCE0AC212E15B9006C9CBF /* TruckDetailHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TruckDetailHeader.swift; sourceTree = "<group>"; };
+		CDDCE0AE212E4FA2006C9CBF /* TruckDetailFooter.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TruckDetailFooter.xib; sourceTree = "<group>"; };
+		CDDCE0B0212E4FAF006C9CBF /* TruckDetailFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TruckDetailFooter.swift; sourceTree = "<group>"; };
 		CDE0D67020B7353200CE3814 /* TruckController+UISearchBarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TruckController+UISearchBarDelegate.swift"; sourceTree = "<group>"; };
 		CDE0D67220B7358B00CE3814 /* TruckController+UITableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TruckController+UITableViewDelegate.swift"; sourceTree = "<group>"; };
 		D0DCEB47B9F2A9204E968147 /* Pods-FTTrackerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FTTrackerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FTTrackerTests/Pods-FTTrackerTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -189,6 +197,10 @@
 				CD816F991F916F49007A2A6D /* FTTextView.swift */,
 				CD73C52B1FA15D610032766C /* FoodTruckTableViewCell.swift */,
 				CD816F971F916F28007A2A6D /* FTTextField.swift */,
+				CDDCE0AA212E15A6006C9CBF /* TruckDetailHeader.xib */,
+				CDDCE0AC212E15B9006C9CBF /* TruckDetailHeader.swift */,
+				CDDCE0AE212E4FA2006C9CBF /* TruckDetailFooter.xib */,
+				CDDCE0B0212E4FAF006C9CBF /* TruckDetailFooter.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -304,9 +316,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD98818E1F90061000661E4E /* LaunchScreen.storyboard in Resources */,
+				CDDCE0AF212E4FA2006C9CBF /* TruckDetailFooter.xib in Resources */,
 				CD638D252129F845006EB2B7 /* GoogleService-Info.plist in Resources */,
 				CD98818B1F90061000661E4E /* Assets.xcassets in Resources */,
 				CD816F921F905AF9007A2A6D /* Main.storyboard in Resources */,
+				CDDCE0AB212E15A6006C9CBF /* TruckDetailHeader.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,7 +344,9 @@
 				"${BUILT_PRODUCTS_DIR}/Cosmos/Cosmos.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/QuickLayout/QuickLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftEntryKit/SwiftEntryKit.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -339,7 +355,9 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cosmos.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/QuickLayout.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftEntryKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -454,11 +472,13 @@
 				CD816F941F906937007A2A6D /* CurvedButton.swift in Sources */,
 				CD638D2C212B5706006EB2B7 /* UIColor+theme.swift in Sources */,
 				CD73C5281F9AA65A0032766C /* FoodTruck.swift in Sources */,
+				CDDCE0AD212E15B9006C9CBF /* TruckDetailHeader.swift in Sources */,
 				CD816F9A1F916F49007A2A6D /* FTTextView.swift in Sources */,
 				CD9881841F90061000661E4E /* AppDelegate.swift in Sources */,
 				CD638D2E212D0D30006EB2B7 /* TruckDetailController.swift in Sources */,
 				CDE0D67120B7353200CE3814 /* TruckController+UISearchBarDelegate.swift in Sources */,
 				CD73C52C1FA15D610032766C /* FoodTruckTableViewCell.swift in Sources */,
+				CDDCE0B1212E4FAF006C9CBF /* TruckDetailFooter.swift in Sources */,
 				CD816F961F916A05007A2A6D /* RegisterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
